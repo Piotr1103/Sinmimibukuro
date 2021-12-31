@@ -1,9 +1,127 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{block name="title"}{/block}</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>耳袋 - {block name="title"}{/block}</title>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	{css href="__CSS__/bootstrap.min.css"}
+	{css href="__CSS__/style.css"}
 </head>
 <body>
-	{block name="main"}{/block}
+	<header class="fixed-top">
+		<nav class="navbar navbar-dark bg-dark p-1">
+			<a href="#" class="navbar-brand" rel="home" title="回首頁">耳袋與怪談</a>
+			<div class="nav-item dropdown mr-5">
+				<a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">管理中心</a>
+				<div class="dropdown-menu">
+					<a href="#" class="dropdown-item">帳戶</a>
+					<a href="#" class="dropdown-item">退出</a>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<div class="container mt-5">
+		<div class="row">
+			<article class="col-md-10 mt-5">
+				{block name="main"}{/block}
+			</article>
+
+			<aside class="col-md-2 mt-5">
+				<div>
+					江戸時代的南町奉行根岸鎮衛將當時社會上流傳的一些聽起來不可思議、匪夷所思的流言蜚語先記錄下來，待日後琢磨查證，其隨筆札記就叫做"耳袋"(也作"耳囊")。
+
+而《新耳袋》是恐怖短篇故事集，為日本靈異作家木原浩勝與中山市朗共同編寫。他們致力蒐集日本各地網友投稿的真實體驗故事，皆為現代都會中發生的神秘事件，例如出租公寓發生的怪事、照片出現詭異的人影、詭異自殺事件等等。整個系列共有十夜(十本)。
+
+原本是以「百物語」形式出版，但作者表示出版之後，發生一連串不可思議事件，因為人們相信只要連續看完一百則怪談就會發生怪事，陸續有讀者反應看完真有靈異事件發生，所以經過刪減後成為九十九則靈異故事的《怪談新耳袋》（角川文庫版跋）。
+
+台灣的東販出版社只引進了第一夜跟第二夜，而且只出了一刷就絕版了。出版社的官方說法是銷量不如預期，但新耳袋的支持者認為應該有更多的故事。做為一個怪談迷，像新耳袋這種平淡裡帶點小恐怖的故事是最吸引人的。不去探討故事的真實性，而就單純去享受這些故事所帶來的小小刺激感，這也是新耳袋的一個重要原則。這個系列日文原版有十本，每本99個故事。然而，中文版只由台灣省東販出版社出版了前兩夜之后，就沒再繼續出版了，而且前兩夜也很快就絕版了，各種流言四起(有人說翻譯者翻完後遭遇靈異現象，所以不敢再翻了)。
+
+為了能夠讀到更完整的新耳袋，我在日本亞馬遜買到了角川文庫出版的新耳袋，也開始學習很久沒碰的日文。但顯然這並不是可以一蹴而幾的。新耳袋的翻譯網路上偶爾可以看到一些網友自己翻譯的幾篇零碎段落，但是實在不足以滿足需求。獨樂樂不如眾樂樂，我專門去找認識的店把這幾本書掃描起來，跟聲友們分享。說不定讀的人多了，就有人願意來翻譯了。
+				</div>
+			</aside>
+		</div>
+	</div>
+
+	<footer class="text-center text-lg-start bg-dark text-light mt-5">
+		<section class="d-flex justify-content-center justify-content-lg-between p-3 border-bottom">
+			<div class="me-5 d-none d-lg-block">
+				<span class="font-weight-bold ml-4">聯繫方式和其他產品：</span>
+			</div>
+			<div>
+				<a href="#" class="mr-4 text-reset">
+					<i class="fab fa-line fa-2x"></i>
+				</a>
+				<a href="https://github.com/Piotr1103" class="mr-4 text-reset">
+					<i class="fab fa-github fa-2x"></i>
+				</a>
+			</div>
+		</section>
+
+		<section class="d-flex justify-content-center justify-content-lg-between p-1 border-bottom">
+			<div class="container text-center text-md-start mt-3">
+				<div class="row">
+
+					<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-2">
+						<h6 class="text-uppercase font-weight-bold mb-4">
+							<i class="fas fa-ghost me-3"></i> 關於本協會
+						</h6>
+						<p class="text-left">
+							本協會致力於推廣日本筆記小說家 – 根岸鎮衛(1737-1815)的作品【耳袋】及其現代衍生作品【新耳袋】(中山市朗、木原浩勝)。
+						</p>
+					</div>
+
+					<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-2">
+						<h6 class="text-uppercase font-weight-bold mb-4">
+							相關連結
+						</h6>
+						<p>
+							<a href="https://youkai.fandom.com/wiki/%E9%A6%96%E9%A0%81" class="text-reset">妖怪煉成陣</a>
+						</p>
+						<p>
+							<a href="https://blog.xuite.net/ultraman_csu/twblog/163051256" class="text-reset">新耳袋 與 怪談新耳袋 華人最大 討論版</a>
+						</p>
+					</div>
+
+					<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-2">
+						<h6 class="text-uppercase font-weight-bold mb-4">
+							其他產品
+						</h6>
+						<p>
+							<a href="https://wenyun.000webhostapp.com" class="text-reset">個人文書網站</a>
+						</p>
+						<p>
+							<a href="http://www.domiczeskij.byethost7.com" class="text-reset">家庭計畫網站</a>
+						</p>
+					</div>
+
+					<div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-2">
+						<h6 class="text-uppercase font-weight-bold mb-4">
+							聯繫方式
+						</h6>
+						<div class="text-center pl-1">
+							<div class="ml-5 text-left">
+								<p><i class="fas fa-home me-3"></i>&emsp;台中市太平區</a></p>
+								<p><i class="fas fa-envelope me-3"></i>&emsp;puyanjia92@gmail.com</p>
+								<p><i class="fas fa-phone me-3"></i>&emsp;0980013155</p>
+								<p><i class="fas fa-print me-3"></i>&emsp;04-22734455</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05);">
+			<p>© 耳袋推廣協會 - {:date('Y')}</p>
+		</div>
+	</footer>
+
+	{js href="__JS__/jquery-3.3.1.min.js"}
+	{js href="__JS__/bootstrap.bundle.min.js"}
+	{js href="__JS__/vue-2.6.14.min.js"}
+	{block name="js"}{/block}
 </body>
 </html>
