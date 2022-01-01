@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>简易提示</title>
+
+	<!-- 引入Bootstrap和样式表 -->
+	{css href="__CSS__/bootstrap.min.css"}
+	{css href="__CSS__/style.css"}
+
+	<!-- 移动优先 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<!-- 简易提示 -->
+	<div class="d-flex justify-content-center align-items-center vw-100 vh-100">
+		<div class="toast show mb-5 px-3">
+			<div class="toast-header">
+				<strong>● 系统提示</strong>
+			</div>
+			<div class="toast-body">
+				<ol class="text-danger">
+					<!-- <li>错误提示</li> -->
+					{volist name="infos" id="item"}
+					<li>{$item}</li>
+					{/volist}
+				</ol>
+				<a href="{$url_path}" class="btn btn-primary btn-sm w-100">{$url_text}</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- 引入JS文件 -->
+	{js href="__JS__/jquery-3.3.1.min.js"}
+	{js href="__JS__/bootstrap.bundle.min.js"}
+</body>
+</html>
