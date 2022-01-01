@@ -3,9 +3,17 @@
 {block name="title"}首頁{/block}
 
 {block name="main"}
-	{$cont|raw}
-{/block}
+	<div class="container mt-5">
+		<div class="row">
+			<article class="col-md-10 mt-5">
+				<div class="border m-3 p-3 shadow">
+					{$cont|raw}
+				</div>
+			</article>
 
-{block name="aside"}
-	{$aside|raw}
+			<aside class="col-md-2 mt-5">
+				{$aside|raw}
+			</aside>
+		</div>
+	</div>
 {/block}
