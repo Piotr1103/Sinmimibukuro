@@ -1,0 +1,64 @@
+{extend name="public/base"}
+
+{block name="title"}新耳袋 - 新增文章{/block}
+
+{block name="main"}
+	<div class="col-12 mt-5 mx-5">
+		<form action="{:url('/smb')}" method="post">
+			<fieldset class="w-75">
+				<div class="form-group row">
+					<label for="yid" class="col-2 col-form-label">夜數</label>
+					<div class="col-8">
+						<input type="text" id="yid" name="yid" class="form-control" placeholder="請輸入夜數">
+					</div>
+					<span class="col-2 text-danger col-form-label">*</span>
+				</div>
+
+				<div class="form-group row">
+					<label for="cid" class="col-2 col-form-label">章數</label>
+					<div class="col-8">
+						<input type="text" id="cid" name="cid" class="form-control" placeholder="請輸入章數">
+					</div>
+					<span class="col-2 text-danger col-form-label">*</span>
+				</div>
+
+				<div class="form-group row">
+					<label for="sid" class="col-2 col-form-label">回數</label>
+					<div class="col-8">
+						<input type="text" id="sid" name="sid" class="form-control" placeholder="請輸入回數">
+					</div>
+					<span class="col-2 text-danger col-form-label">*</span>
+				</div>
+
+				<div class="form-group row">
+					<label for="status" class="col-2 col-form-label">狀態</label>
+					<div class="col-8">
+						<label for="" class="col-form-label-sm">
+							<input type="radio" id="zero" name="status" value="0" checked>待審核
+						</label>
+						&emsp;
+						<label for="" class="col-form-label-sm">
+							<input type="radio" id="one" name="status" value="1">已公開
+						</label>
+					</div>
+					<span class="col-2 text-danger col-form-label">*</span>
+				</div>
+
+				<div class="form-group row">
+					<label for="title" class="col-2 col-form-label">標題</label>
+					<div class="col-8">
+						<input type="text" id="title" name="title" class="form-control" placeholder="請輸入標題">
+					</div>
+					<span class="col-2 text-danger col-form-label">*</span>
+				</div>
+
+				<div class="form-group row">
+					<label for="content" class="col-2 col-form-label">內容</label>
+					<div class="col-8">
+						<textarea id="content" name="content" class="form-control" rows="10"></textarea>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+{/block}
