@@ -26,8 +26,10 @@
 				</div>
 			</article>
 
-			<aside class="col-md-2 mt-5">
-				<a href="{:url('/smb/create')}" class="btn btn-success position-fixed">添加文章</a>
+			<aside class="col-md-2 mt-lg-5">
+				{if (null != session('admin')) AND (session('admin') != '')}
+					<a href="{:url('/smb/create')}" class="btn btn-success">添加文章</a>
+				{/if}
 			</aside>
 		</div>
 	</div>
