@@ -41,15 +41,61 @@
 				</ul>
 			</div>
 
-			<div class="nav-item dropdown mr-1">
-				<a href="#" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown">管理中心</a>
-				<div class="dropdown-menu">
-					<a href="#" class="dropdown-item">帳戶</a>
-					<a href="#" class="dropdown-item">退出</a>
+			{if (null == session('admin')) AND (session('admin') == '')}
+				<a href="#" class="nav-link text-dark mr-2" data-toggle="modal" data-target="#login">登錄</a>
+				<a href="#" class="nav-link text-dark mr-5">註冊</a>
+			{else/}
+				<div class="nav-item dropdown mr-5">
+					<a href="#" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown">{:session('admin')}</a>
+					<div class="dropdown-menu">
+						<a href="#" class="dropdown-item">帳戶</a>
+						<a href="/logout" id="logout" class="dropdown-item">退出</a>
+					</div>
 				</div>
-			</div>
+			{/if}
 		</nav>
 	</header>
+
+	<div id="login" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5>登錄</h5>
+					<button class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="#" method="post" id="logform">
+						<div class="form-group">
+							<label for="name">管理名稱</label>
+							<input type="text" id="name" name="name" class="form-control" placeholder="請輸入管理名稱">
+						</div>
+
+						<div class="form-group">
+							<label for="password">管理密碼</label>
+							<input type="password" id="password" name="password" class="form-control" placeholder="請輸入管理密碼">
+						</div>
+
+						<div class="form-group">
+							<label class="mt-3" style="position: relative;top:-10px;">{:captcha_img()}</label>
+							<input type="text" id="captcha" name="captcha" class="form-control" placeholder="請輸入驗證碼">
+						</div>
+
+						<div class="form-group">
+							<input type="hidden" name="__token__" value="{:token()}">
+							<!-- <button class="btn btn-success w-100">登錄</button> -->
+						</div>
+					</form>
+					<p id="hint"></p>
+				</div>
+				<div class="modal-footer">
+					<button id="logger" class="btn btn-success">登錄</button>
+					<button class="btn btn-secondary" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	{block name="main"}{/block}
 
@@ -77,7 +123,7 @@
 							<i class="fas fa-ghost mr-3"></i> 關於本協會
 						</h6>
 						<p class="text-left">
-							本協會致力於推廣日本筆記小說家 – 根岸鎮衛(1737-1815)的作品【耳袋】及其現代衍生作品【新耳袋】(中山市朗、木原浩勝)。
+							&emsp;&emsp;本協會致力於推廣日本筆記小說家 – 根岸鎮衛(1737-1815)的作品【耳袋】及其現代衍生作品【新耳袋】(中山市朗、木原浩勝)。
 						</p>
 					</div>
 
@@ -112,7 +158,7 @@
 						<div class="ml-5 ml-lg-0 text-center">
 							<div class="ml-5 pl-5 ml-lg-5 pl-lg-0 text-left">
 								<p><i class="fas fa-home mr-1"></i>&emsp;台中市太平區</a></p>
-								<p><i class="fas fa-envelope mr-1"></i>&emsp;puyanjia92@gmail.com</p>
+								<p><i class="fas fa-envelope mr-1"></i>&emsp;<a href="mailto:puyanjia92@gmail.com">puyanjia92@gmail.com</a></p>
 								<p><i class="fas fa-phone mr-1"></i>&emsp;0980013155</p>
 								<p><i class="fas fa-print mr-1"></i>&emsp;04-22734455</p>
 							</div>
@@ -132,5 +178,26 @@
 	{js href="__JS__/bootstrap.bundle.min.js"}
 	{js href="__JS__/vue-2.6.14.min.js"}
 	{block name="js"}{/block}
+	<script type="text/javascript">
+		$('#logger').click(() => {
+			var url = "{:url('/login_check')}"
+			var formData = $('#logform').serialize()
+			$.ajax({
+				url: url,
+				method: 'POST',
+				dataType: 'text',
+				data: formData,
+				success: function(){
+					location.reload()
+					$('#login').modal('toggle')
+				}
+			})
+		})
+		$('#logout').click(() => {
+			$.get('/logout', function(){
+				location.reload()
+			})
+		})
+	</script>
 </body>
 </html>
