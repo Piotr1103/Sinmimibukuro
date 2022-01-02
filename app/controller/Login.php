@@ -39,7 +39,7 @@ class Login
 		}
 
 		if(!empty($errors)){
-			return '登錄失敗';
+			return redirect('/login');
 		}else{
 			session('admin', $data['name']);
 			return redirect('/');
