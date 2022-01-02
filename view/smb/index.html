@@ -28,8 +28,11 @@
 
 			<aside class="col-md-2 mt-lg-5">
 				{if (null != session('admin')) AND (session('admin') != '')}
-					<a href="{:url('/smb/create')}" class="btn btn-success">添加文章</a>
+					<a href="{:url('/create_smb')}" class="btn btn-info">添加文章</a>
 				{/if}
+				{volist name="caps" id="obj"}
+					<a href="#" class="btn btn-success text-left mt-2">{$obj.title}</a>
+				{/volist}
 			</aside>
 		</div>
 	</div>
