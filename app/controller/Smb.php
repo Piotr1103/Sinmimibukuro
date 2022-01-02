@@ -7,9 +7,12 @@ use think\Request;
 use app\model\Smb as SmbModel;
 use app\validate\Smb as SmbValidate;
 use think\exception\ValidateException;
+use app\middleware\Auth as AuthMiddleware;
+use think\facade\Db;
 
 class Smb
 {
+	protected $middleware = [AuthMiddleware::class];
 	/**
 	 * 显示资源列表
 	 *
@@ -25,8 +28,16 @@ class Smb
 			'query' 		=> request()->param(),
 		]);
 
+		$caps = Db::name('smb')->where([
+			'yid' => request()->param('yid'),
+			'sid' => 0,
+		])->field([
+			'title',
+		])->select();
+
 		return view('index', [
-			'list' => $list,
+			'list' 	=> $list,
+			'caps' 	=> $caps,
 		]);
 	}
 

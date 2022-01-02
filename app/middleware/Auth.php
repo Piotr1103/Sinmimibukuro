@@ -4,6 +4,7 @@ declare (strict_types = 1);
 namespace app\middleware;
 
 use app\model\Auth as AuthModel;
+use think\exception\ErrorException;
 
 class Auth
 {
@@ -20,21 +21,27 @@ class Auth
 		$roles = [];
 		$auth = AuthModel::where('name', session('admin'))->find();
 
-		foreach($auth->role as $k=>$obj){
-			foreach(explode(',', $obj->uri) as $v){
-				$roles[] = $v;
+		try{
+			foreach($auth->role as $k=>$obj){
+				foreach(explode(',', $obj->uri) as $v){
+					$roles[] = $v;
+				}
 			}
-		}
 
-		if($roles[0] != 'All'){
-			$uri = $request->controller().'/'.$request->action();
-			if(!in_array($uri, $roles)){
-				return view('public/toast', [
-					'infos' => ['您不具備進行這個操作的權限'],
-					'url_text' => '去首頁',
-					'url_path' => url('/'),
-				]);
+			if($roles[0] != 'All'){
+				$uri = $request->controller().'/'.$request->action();
+				if(!in_array($uri, $roles)){
+					return view('public/toast', [
+						'infos' => ['您不具備進行這個操作的權限'],
+						'url_text' => '去首頁',
+						'url_path' => url('/'),
+					]);
+				}
 			}
+
+			return $next($request);
+		}catch(ErrorException $exception){
+			return redirect('/login');
 		}
 	}
 }

@@ -11,7 +11,7 @@
 use think\facade\Route;
 
 Route::get('think', function () {
-    return 'hello,ThinkPHP6!';
+	return 'hello,ThinkPHP6!';
 });
 
 Route::get('hello/:name', 'index/hello');
@@ -31,6 +31,7 @@ Route::group(function(){
 
 Route::group(function(){
 	Route::get('create_smb', 'Smb/create');
+	Route::get('/smb/create', 'Smb/create');
 })->middleware(function($request, \Closure $next){
 	if(!session('?admin')){
 		return redirect('/login');
