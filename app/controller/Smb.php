@@ -30,6 +30,7 @@ class Smb
 
 		return view('index', [
 			'list' 	=> $list,
+			'page' 	=> request()->param('page'),
 		]);
 	}
 
@@ -62,7 +63,7 @@ class Smb
 			return view('public/toast', [
 				'infos' => $exception->getError(),
 				'url_text' => '返回添加',
-				'url_path' => url('/smb/create'),
+				'url_path' => url('/smb/create', ['yid'=>request()->param('yid'),'page'=>request()->param('page')]),
 			]);
 		}
 
@@ -119,7 +120,7 @@ class Smb
 			return view('public/toast', [
 				'infos' 	=> $exception->getError(),
 				'url_text' 	=> '繼續修改',
-				'url_path' 	=> url('/smb/'.$id.'/edit'),
+				'url_path' 	=> url('/smb/'.$id.'/edit', ['yid'=>$request->param('yid'),'page'=>request()->param('page')]),
 			]);
 		}
 
