@@ -20,24 +20,45 @@
 
 			<div id="contents" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="nav-item">
-						<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">新耳袋</a>
-						<div class="dropdown-menu" style="left: 7vw;">
-							<a href="/smb.html?yid=1" class="dropdown-item">第一夜</a>
-							<a href="#" class="dropdown-item">第二夜</a>
-							<a href="#" class="dropdown-item">第三夜</a>
-							<a href="#" class="dropdown-item">第四夜</a>
-							<a href="#" class="dropdown-item">第五夜</a>
-							<a href="#" class="dropdown-item">第六夜</a>
-							<a href="#" class="dropdown-item">第七夜</a>
-							<a href="#" class="dropdown-item">第八夜</a>
-							<a href="#" class="dropdown-item">第九夜</a>
-							<a href="#" class="dropdown-item">第十夜</a>
-						</div>
-					</li>
-					<li class="nav-item">
-						<a href="#" class="nav-link">舊怪談</a>
-					</li>
+					{if (null == session('admin')) AND (session('admin') == '')}
+						<li class="nav-item">
+							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">新耳袋</a>
+							<div class="dropdown-menu" style="left: 7vw;">
+								<a href="#" class="dropdown-item">第一夜</a>
+								<a href="#" class="dropdown-item">第二夜</a>
+								<a href="#" class="dropdown-item">第三夜</a>
+								<a href="#" class="dropdown-item">第四夜</a>
+								<a href="#" class="dropdown-item">第五夜</a>
+								<a href="#" class="dropdown-item">第六夜</a>
+								<a href="#" class="dropdown-item">第七夜</a>
+								<a href="#" class="dropdown-item">第八夜</a>
+								<a href="#" class="dropdown-item">第九夜</a>
+								<a href="#" class="dropdown-item">第十夜</a>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">舊怪談</a>
+						</li>
+					{else/}
+						<li class="nav-item">
+							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">新耳袋</a>
+							<div class="dropdown-menu" style="left: 7vw;">
+								<a href="/smb.html?yid=1" class="dropdown-item">第一夜</a>
+								<a href="/smb.html?yid=2" class="dropdown-item">第二夜</a>
+								<a href="/smb.html?yid=3" class="dropdown-item">第三夜</a>
+								<a href="/smb.html?yid=4" class="dropdown-item">第四夜</a>
+								<a href="/smb.html?yid=5" class="dropdown-item">第五夜</a>
+								<a href="/smb.html?yid=6" class="dropdown-item">第六夜</a>
+								<a href="/smb.html?yid=7" class="dropdown-item">第七夜</a>
+								<a href="/smb.html?yid=8" class="dropdown-item">第八夜</a>
+								<a href="/smb.html?yid=9" class="dropdown-item">第九夜</a>
+								<a href="/smb.html?yid=10" class="dropdown-item">第十夜</a>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">舊怪談</a>
+						</li>
+					{/if}
 				</ul>
 			</div>
 
@@ -197,6 +218,11 @@
 			$.get('/logout', function(){
 				location.reload()
 			})
+		})
+		$('#captcha').keyup((e) => {
+			if(e.keyCode==13){
+				$('#logger').click()
+			}
 		})
 	</script>
 </body>
