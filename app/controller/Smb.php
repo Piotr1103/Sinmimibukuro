@@ -23,21 +23,13 @@ class Smb
 		//
 		$list = SmbModel::withSearch(['yid'], [
 			'yid' => request()->param('yid'),
-		])->paginate([
+		])->order('tid')->paginate([
 			'list_rows' 	=> 5,
 			'query' 		=> request()->param(),
 		]);
 
-		$caps = Db::name('smb')->where([
-			'yid' => request()->param('yid'),
-			'sid' => 0,
-		])->field([
-			'title',
-		])->select();
-
 		return view('index', [
 			'list' 	=> $list,
-			'caps' 	=> $caps,
 		]);
 	}
 
@@ -49,7 +41,8 @@ class Smb
 	public function create()
 	{
 		//叫出新增新耳袋文章的頁面
-		return view('create');
+		$tid = Db::name('smb')->max('tid');
+		return view('create', ['tid'=>$tid]);
 	}
 
 	/**
@@ -78,7 +71,7 @@ class Smb
 		return $id ? view('public/toast', [
 			'infos' 	=> ['恭喜，插入成功！'],
 			'url_text' 	=> '返回閱覽',
-			'url_path' 	=> url('/smb'),
+			'url_path' 	=> url('/smb', ['yid'=>request()->param('yid'),'page'=>request()->param('page')]),
 		]) : '插入失敗！';
 	}
 
@@ -101,7 +94,10 @@ class Smb
 	 */
 	public function edit($id)
 	{
-		//
+		//修改單一文章內容，藉由默認主鍵搜索
+		return view('edit', [
+			'obj' => SmbModel::find($id),
+		]);
 	}
 
 	/**
@@ -113,7 +109,26 @@ class Smb
 	 */
 	public function update(Request $request, $id)
 	{
-		//
+		//驗證並更新
+		$data = $request->param();
+
+		try{
+			validate(SmbValidate::class)->batch(true)->check($data);
+		}catch(ValidateException $exception){
+			return view('public/toast', [
+				'infos' 	=> $exception->getError(),
+				'url_text' 	=> '繼續修改',
+				'url_path' 	=> url('/smb/'.$id.'/edit'),
+			]);
+		}
+
+		$id = SmbModel::update($data)->getData('id');
+
+		return $id ? view('public/toast', [
+			'infos' => ['恭喜，修改成功！'],
+			'url_text' => '返回閱覽',
+			'url_path' => url('/smb', ['yid'=>$request->param('yid'),'page'=>request()->param('page')]),
+		]) : '修改失敗！';
 	}
 
 	/**
