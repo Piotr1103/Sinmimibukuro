@@ -40,7 +40,7 @@ class Smb
 	 */
 	public function create()
 	{
-		//叫出新增新耳袋文章的頁面
+		//tid是資料庫中找到的最大序數
 		$tid = Db::name('smb')->max('tid');
 		return view('create', ['tid'=>$tid]);
 	}
@@ -53,7 +53,7 @@ class Smb
 	 */
 	public function save(Request $request)
 	{
-		//插入資料庫
+		//
 		$data = request()->param();
 
 		try{
@@ -71,6 +71,7 @@ class Smb
 		return $id ? view('public/toast', [
 			'infos' 	=> ['恭喜，插入成功！'],
 			'url_text' 	=> '返回閱覽',
+			//帶上page參數以便在插入完成時可以有依據回到原先的頁面
 			'url_path' 	=> url('/smb', ['yid'=>request()->param('yid'),'page'=>request()->param('page')]),
 		]) : '插入失敗！';
 	}
@@ -109,7 +110,7 @@ class Smb
 	 */
 	public function update(Request $request, $id)
 	{
-		//驗證並更新
+		//
 		$data = $request->param();
 
 		try{
@@ -127,6 +128,7 @@ class Smb
 		return $id ? view('public/toast', [
 			'infos' => ['恭喜，修改成功！'],
 			'url_text' => '返回閱覽',
+			//帶上page參數以便在修改完成時可以有依據回到原先的頁面
 			'url_path' => url('/smb', ['yid'=>$request->param('yid'),'page'=>request()->param('page')]),
 		]) : '修改失敗！';
 	}
