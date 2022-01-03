@@ -1,0 +1,85 @@
+{extend name="public/base"}
+
+{block name="title"}新耳袋 - 編輯文章{/block}
+
+{block name="main"}
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-12 mt-5 mx-0 mx-lg-5">
+				<form action="{:url('/smb/'.$obj.id)}?page={:request()->param('page')}" method="post">
+					<input type="hidden" name="_method" value="put">
+					<fieldset class="w-100">
+						<div class="form-group row">
+							<label for="tid" class="col-2 col-form-label">序數</label>
+							<div class="col-10">
+								<input type="text" id="tid" name="tid" class="form-control" value="{$obj.tid}">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="yid" class="col-2 col-form-label">夜數</label>
+							<div class="col-10">
+								<input type="text" id="yid" name="yid" class="form-control" value="{$obj.yid}">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="cid" class="col-2 col-form-label">章數</label>
+							<div class="col-10">
+								<input type="text" id="cid" name="cid" class="form-control" value="{$obj.cid}">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="sid" class="col-2 col-form-label">回數</label>
+							<div class="col-10">
+								<input type="text" id="sid" name="sid" class="form-control" value="{$obj.sid}">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="status" class="col-2 col-form-label">狀態</label>
+							<div class="col-10">
+								<label for="zero" class="col-form-label-sm">
+									<input type="radio" id="zero" name="status" value="0" {eq name="obj.status" value="待審核"}checked{/eq}>待審核
+								</label>
+								&emsp;
+								<label for="one" class="col-form-label-sm">
+									<input type="radio" id="one" name="status" value="1" {eq name="obj.status" value="已公開"}checked{/eq}>已公開
+								</label>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="title" class="col-2 col-form-label">標題</label>
+							<div class="col-10">
+								<input type="text" id="title" name="title" class="form-control" value="{$obj.title}">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-12">
+								<textarea id="content" name="content" class="form-control">{$obj.content}</textarea>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-2"></label>
+							<div class="col-8">
+								<input type="hidden" name="__token__" value="{:token()}">
+								<button class="btn btn-success w-100">修改文章</button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+{/block}
+
+{block name="js"}
+	<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+	<script type="text/javascript">
+		CKEDITOR.replace('content')
+	</script>
+{/block}
