@@ -6,8 +6,15 @@
 	<div class="container mt-5">
 		<div class="row">
 			<div class="col-12 mt-5 mx-0 mx-lg-5">
-				<form action="{:url('/smb')}" method="post">
+				<form action="{:url('/smb')}?page={:request()->param('page')}" method="post">
 					<fieldset class="w-100">
+						<div class="form-group row">
+							<label for="tid" class="col-2 col-form-label">序數</label>
+							<div class="col-10">
+								<input type="text" id="tid" name="tid" class="form-control" placeholder="請輸入序數" value={$tid+1}>
+							</div>
+						</div>
+
 						<div class="form-group row">
 							<label for="yid" class="col-2 col-form-label">夜數</label>
 							<div class="col-10">
@@ -32,11 +39,11 @@
 						<div class="form-group row">
 							<label for="status" class="col-2 col-form-label">狀態</label>
 							<div class="col-10">
-								<label for="" class="col-form-label-sm">
+								<label for="zero" class="col-form-label-sm">
 									<input type="radio" id="zero" name="status" value="0" checked>待審核
 								</label>
 								&emsp;
-								<label for="" class="col-form-label-sm">
+								<label for="one" class="col-form-label-sm">
 									<input type="radio" id="one" name="status" value="1">已公開
 								</label>
 							</div>
