@@ -15,4 +15,19 @@ class Smb extends Model
 	{
 		return $value ? $query->where('yid', $value) : '';
 	}
+
+	public function getStatusAttr($value)
+	{
+		$status = [
+			0 => '待審核',
+			1 => '已公開',
+		];
+
+		return $status[$value];
+	}
+
+	public function getBadgeAttr($value, $data)
+	{
+		return $data['status'] ? 'success' : 'warning';
+	}
 }
