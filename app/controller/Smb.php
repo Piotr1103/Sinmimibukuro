@@ -21,8 +21,9 @@ class Smb
 	public function index()
 	{
 		//
-		$list = SmbModel::withSearch(['yid'], [
+		$list = SmbModel::withSearch(['yid','cid'], [
 			'yid' => request()->param('yid'),
+			'cid' => request()->param('cid'),
 		])->order('tid')->paginate([
 			'list_rows' 	=> 5,
 			'query' 		=> request()->param(),
