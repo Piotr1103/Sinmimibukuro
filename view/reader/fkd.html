@@ -1,0 +1,41 @@
+{extend name="public/base"}
+
+{block name="title"}新耳袋 - 閱覽{/block}
+
+{block name="main"}
+	<div class="container mt-5">
+		<div class="row">
+			<article class="col-md-10 mt-5">
+				{assign name="empty" value='<div class="card bg-light text-dark mb5"><div class="card-header bg-danger p-3"><h3 class="text-center text-light">暫無數據</h3></div><div class="card-body"><h4>未找到文章或正在撰寫中。</h4></div><div class="card-footer"><div class="text-right"><a href="/" class="btn btn-success">回首頁</a></div></div></div>'}
+				{volist name="list" id="obj" empty="$empty"}
+					<div class="card bg-light text-dark mb-5">
+						<div class="card-header bg-{eq name='$obj.sid' value='0'}success{else/}primary{/eq} p-3">
+							<h3 class="text-center text-light">{$obj.title}</h3>
+						</div>
+						<div class="card-body">
+							{$obj.content|raw}
+						</div>
+						<div class="card-footer container">
+							<div class="row">
+								<div class="col-8">
+									{$obj.tid} - {$obj.create_time}&emsp;<span class="badge badge-{$obj.badge}">{$obj.status}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				{/volist}
+
+				<div class="pager">
+					{$list|raw}
+				</div>
+			</article>
+
+			<aside class="col-md-2 mt-lg-5">
+				<a href="{:url('/reader')}?kaidan=fkd" class="btn btn-primary text-left mt-2">不分章節</a><hr>
+				{volist name="caps" id="obj"}
+					<a href="{:url('/reader')}?kaidan=fkd&tid={$obj.tid}" class="btn btn-{eq name='$obj.sid' value='0'}success{else/}primary{/eq} text-left mt-2">{$obj.title}</a>
+				{/volist}
+			</aside>
+		</div>
+	</div>
+{/block}
