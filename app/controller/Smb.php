@@ -29,8 +29,17 @@ class Smb
 			'query' 		=> request()->param(),
 		]);
 
+		$caps = Db::name('smb')->where([
+			'yid' => request()->param('yid'),
+			'sid' => 0,
+		])->field([
+			'cid',
+			'title',
+		])->select();
+
 		return view('index', [
 			'list' 	=> $list,
+			'caps' 	=> $caps,
 			//將page參數傳到下一頁或其他頁面
 			'page' 	=> request()->param('page'),
 		]);
