@@ -142,6 +142,12 @@ class Smb
 	 */
 	public function delete($id)
 	{
-		//
+		//為了不打亂默認主鍵，一般建議用修改方法
+		return SmbModel::destroy($id) ? view('public/toast', [
+			'infos' => ['恭喜，刪除成功！'],
+			'url_text' => '返回閱覽',
+			//帶上page參數以便在修改完成時可以有依據回到原先的頁面
+			'url_path' => url('/smb', ['yid'=>request()->param('yid'),'page'=>request()->param('page')]),
+		]) : '刪除失敗！';
 	}
 }
