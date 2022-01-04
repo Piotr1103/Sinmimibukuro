@@ -16,6 +16,11 @@ class Smb extends Model
 		return $value ? $query->where('yid', $value) : '';
 	}
 
+	public function searchCidAttr($query, $value)
+	{
+		return $value ? $query->where('cid', $value) : '';
+	}
+
 	public function getStatusAttr($value)
 	{
 		$status = [
