@@ -41,17 +41,19 @@
 				{if (null != session('admin')) AND (session('admin') != '')}
 					<a href="{:url('smb/create')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-info">添加文章</a><hr>
 				{/if}
+				<a href="{:url('/smb')}?yid={empty name='yid'}1{else/}{$yid}{/empty}&page=1" class="btn btn-primary text-left mt-2">不分章節</a><hr>
 				{php}
 					use think\facade\Db;
 					$caps = Db::name('smb')->where([
 						'yid' => request()->param('yid'),
 						'sid' => 0,
 					])->field([
+						'cid',
 						'title',
 					])->select();
 				{/php}
 				{volist name="caps" id="obj"}
-					<a href="#" class="btn btn-success text-left mt-2">{$obj.title}</a>
+					<a href="{:url('/smb')}?yid={empty name='yid'}1{else/}{$yid}{/empty}&cid={$obj.cid}&page=1" class="btn btn-success text-left mt-2">{$obj.title}</a>
 				{/volist}
 			</aside>
 		</div>
