@@ -16,6 +16,8 @@ Route::get('think', function () {
 
 Route::get('hello/:name', 'index/hello');
 
+Route::resource('reader', 'Reader');
+
 Route::group(function(){
 	Route::get('login', 'Login/index')->middleware(function($request, \Closure $next){
 		if(session('admin')){
@@ -29,6 +31,7 @@ Route::group(function(){
 
 Route::group(function(){
 	Route::resource('smb', 'Smb');
+	Route::resource('fkd', 'Fkd');
 })->middleware(function($request, \Closure $next){
 	if(!session('?admin')){
 		return redirect('/login');
