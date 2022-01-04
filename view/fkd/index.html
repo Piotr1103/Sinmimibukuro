@@ -1,0 +1,57 @@
+{extend name="public/base"}
+
+{block name="title"}舊怪談 - 閱覽{/block}
+
+{block name="main"}
+	<div class="container mt-5">
+		<div class="row">
+			<article class="col-md-10 mt-5">
+				{assign name="empty" value='<div class="card bg-light text-dark mb5"><div class="card-header bg-danger p-3"><h3 class="text-center text-light">暫無數據</h3></div><div class="card-body"><h4>未找到文章或正在撰寫中。</h4></div><div class="card-footer"><div class="text-right"><a href="/" class="btn btn-success">回首頁</a></div></div></div>'}
+				{volist name="list" id="obj" empty="$empty"}
+					<div class="card bg-light text-dark mb-5">
+						<div class="card-header bg-{eq name='$obj.sid' value='0'}success{else/}primary{/eq} p-3">
+							<h3 class="text-center text-light">{$obj.title}</h3>
+						</div>
+						<div class="card-body">
+							{$obj.content|raw}
+						</div>
+						<div class="card-footer container">
+							<div class="row">
+								<div class="col-8">
+									{$obj.tid} - {$obj.create_time}&emsp;<span class="badge badge-{$obj.badge}">{$obj.status}</span>
+								</div>
+								<div class="col-4 text-right">
+									<form action="{:url('/fkd/'.$obj.id)}?yid={empty name='yid'}1{else/}{$yid}{/empty}&page={empty name='page'}1{else/}{$page}{/empty}" method="post">
+										<input type="hidden" name="_method" value="delete">
+										<button class="btn btn-danger btn-delete btn-sm" data-tid="{$obj.tid}">刪除</button>
+										<a href="{:url('/fkd/'.$obj.id.'/edit')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-warning btn-sm">修改</a>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				{/volist}
+
+				<div class="pager">
+					{$list|raw}
+				</div>
+			</article>
+
+			<aside class="col-md-2 mt-lg-5">
+				{if (null != session('admin')) AND (session('admin') != '')}
+					<a href="{:url('fkd/create')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-info">添加文章</a><hr>
+				{/if}
+			</aside>
+		</div>
+	</div>
+{/block}
+
+{block name="js"}
+	<script type="text/javascript">
+		$('.btn-delete').click(function(){
+			let tid = $(this).data('tid')
+			let flag = confirm('確定要刪除第'+tid+'號文章嗎？')
+			return flag ? true : false
+		})
+	</script>
+{/block}
