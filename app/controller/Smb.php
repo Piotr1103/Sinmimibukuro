@@ -31,6 +31,7 @@ class Smb
 
 		return view('index', [
 			'list' 	=> $list,
+			//將page參數傳到下一頁或其他頁面
 			'page' 	=> request()->param('page'),
 		]);
 	}
@@ -64,6 +65,7 @@ class Smb
 			return view('public/toast', [
 				'infos' => $exception->getError(),
 				'url_text' => '返回添加',
+				//帶上page參數以便在toast可以有依據回到原先的頁面
 				'url_path' => url('/smb/create', ['yid'=>request()->param('yid'),'page'=>request()->param('page')]),
 			]);
 		}
@@ -121,6 +123,7 @@ class Smb
 			return view('public/toast', [
 				'infos' 	=> $exception->getError(),
 				'url_text' 	=> '繼續修改',
+				//帶上page參數以便在toast可以有依據回到原先的頁面
 				'url_path' 	=> url('/smb/'.$id.'/edit', ['yid'=>$request->param('yid'),'page'=>request()->param('page')]),
 			]);
 		}
@@ -147,7 +150,7 @@ class Smb
 		return SmbModel::destroy($id) ? view('public/toast', [
 			'infos' => ['恭喜，刪除成功！'],
 			'url_text' => '返回閱覽',
-			//帶上page參數以便在修改完成時可以有依據回到原先的頁面
+			//帶上page參數以便在刪除完成時可以有依據回到原先的頁面
 			'url_path' => url('/smb', ['yid'=>request()->param('yid'),'page'=>request()->param('page')]),
 		]) : '刪除失敗！';
 	}
