@@ -59,7 +59,7 @@
 
 						<div class="form-group row">
 							<div class="col-12">
-								<textarea id="content" name="content" class="form-control">{$obj.content}</textarea>
+								<textarea id="content" name="content" class="form-control" rows="25">{$obj.content}</textarea>
 							</div>
 						</div>
 
@@ -75,11 +75,4 @@
 			</div>
 		</div>
 	</div>
-{/block}
-
-{block name="js"}
-	<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
-	<script type="text/javascript">
-		CKEDITOR.replace('content')
-	</script>
 {/block}
