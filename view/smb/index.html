@@ -9,7 +9,7 @@
 				{assign name="empty" value='<div class="card bg-light text-dark mb5"><div class="card-header bg-danger p-3"><h3 class="text-center text-light">暫無數據</h3></div><div class="card-body"><h4>未找到文章或正在撰寫中。</h4></div><div class="card-footer"><div class="text-right"><a href="/" class="btn btn-success">回首頁</a></div></div></div>'}
 				{volist name="list" id="obj" empty="$empty"}
 					<div class="card bg-light text-dark mb-5">
-						<div class="card-header {eq name='$obj.sid' value='0'}bg-success{else/}bg-primary{/eq} p-3">
+						<div class="card-header bg-{eq name='$obj.sid' value='0'}success{else/}primary{/eq} p-3">
 							<h3 class="text-center text-light">{$obj.title}</h3>
 						</div>
 						<div class="card-body">
@@ -42,16 +42,6 @@
 					<a href="{:url('smb/create')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-info">添加文章</a><hr>
 				{/if}
 				<a href="{:url('/smb')}?yid={empty name='yid'}1{else/}{$yid}{/empty}&page=1" class="btn btn-primary text-left mt-2">不分章節</a><hr>
-				{php}
-					use think\facade\Db;
-					$caps = Db::name('smb')->where([
-						'yid' => request()->param('yid'),
-						'sid' => 0,
-					])->field([
-						'cid',
-						'title',
-					])->select();
-				{/php}
 				{volist name="caps" id="obj"}
 					<a href="{:url('/smb')}?yid={empty name='yid'}1{else/}{$yid}{/empty}&cid={$obj.cid}&page=1" class="btn btn-success text-left mt-2">{$obj.title}</a>
 				{/volist}
