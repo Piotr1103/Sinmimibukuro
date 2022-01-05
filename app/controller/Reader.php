@@ -60,7 +60,7 @@ class Reader
 					'tid',		//用以形成文號請求
 					'sid',		//判斷是否為章
 					'title',
-				])->paginate(20);
+				])->select();
 
 				break;
 		}

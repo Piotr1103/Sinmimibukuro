@@ -26,7 +26,7 @@ class Fkd
 			'sid',
 			'status',
 			'title',
-		])->paginate(20);
+		])->select();
 
 		return view('index', [
 			'list' 	=> $list,
