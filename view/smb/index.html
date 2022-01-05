@@ -39,11 +39,11 @@
 
 			<aside class="col-md-2 mt-lg-5">
 				{if (null != session('admin')) AND (session('admin') != '')}
-					<a href="{:url('smb/create')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-info">添加文章</a><hr>
+					<a href="{:url('smb/create')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-info aside">添加文章</a><hr>
 				{/if}
-				<a href="{:url('/smb')}?yid={empty name='yid'}1{else/}{$yid}{/empty}&page=1" class="btn btn-primary mt-2">不分章節</a><hr>
+				<a href="{:url('/smb')}?yid={empty name='yid'}1{else/}{$yid}{/empty}&page=1" class="btn btn-primary aside mt-2">不分章節</a><hr>
 				{volist name="caps" id="obj"}
-					<a href="{:url('/smb')}?yid={empty name='yid'}1{else/}{$yid}{/empty}&cid={$obj.cid}&page=1" class="btn btn-success text-left mt-2">{$obj.title}</a>
+					<a href="{:url('/smb')}?yid={empty name='yid'}1{else/}{$yid}{/empty}&cid={$obj.cid}&page=1" class="btn btn-success aside text-left mt-2">{$obj.title}</a>
 				{/volist}
 			</aside>
 		</div>
