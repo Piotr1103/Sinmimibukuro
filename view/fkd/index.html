@@ -41,6 +41,10 @@
 				{if (null != session('admin')) AND (session('admin') != '')}
 					<a href="{:url('fkd/create')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-info">添加文章</a><hr>
 				{/if}
+				<a href="{:url('/fkd')}" class="btn btn-primary mt-2">不分章節</a><hr>
+				{volist name="caps" id="obj"}
+					<a href="{:url('/fkd')}?tid={$obj.tid}" class="btn btn-{eq name='$obj.sid' value='0'}success{else/}{eq name='$obj.status' value='0'}warning{else/}primary{/eq}{/eq} text-left mt-2">{$obj.title}</a>
+				{/volist}
 			</aside>
 		</div>
 	</div>
