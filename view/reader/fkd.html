@@ -18,7 +18,7 @@
 						<div class="card-footer container">
 							<div class="row">
 								<div class="col-8">
-									{$obj.tid} - {$obj.create_time}&emsp;<span class="badge badge-{$obj.badge}">{$obj.status}</span>
+									{$obj.create_time}
 								</div>
 							</div>
 						</div>
@@ -31,7 +31,7 @@
 			</article>
 
 			<aside class="col-md-2 mt-lg-5">
-				<a href="{:url('/reader')}?kaidan=fkd" class="btn btn-primary text-left mt-2">不分章節</a><hr>
+				<a href="{:url('/reader')}?kaidan=fkd" class="btn btn-primary mt-2">不分章節</a><hr>
 				{volist name="caps" id="obj"}
 					<a href="{:url('/reader')}?kaidan=fkd&tid={$obj.tid}" class="btn btn-{eq name='$obj.sid' value='0'}success{else/}primary{/eq} text-left mt-2">{$obj.title}</a>
 				{/volist}
