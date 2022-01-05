@@ -21,8 +21,16 @@ class Fkd
 		//
 		$list = FkdModel::order('tid')->paginate(5);
 
+		$caps = Db::name('fkd')->field([
+			'tid',
+			'sid',
+			'status',
+			'title',
+		])->paginate(20);
+
 		return view('index', [
 			'list' => $list,
+			'caps' => $caps,
 			'page' => request()->param('page'),
 		]);
 	}
