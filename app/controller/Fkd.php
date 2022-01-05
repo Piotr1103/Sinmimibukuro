@@ -29,9 +29,9 @@ class Fkd
 		])->paginate(20);
 
 		return view('index', [
-			'list' => $list,
-			'caps' => $caps,
-			'page' => request()->param('page'),
+			'list' 	=> $list,
+			'caps' 	=> $caps,
+			'page' 	=> request()->param('page'),	//將page參數傳到下一頁或其他頁面
 		]);
 	}
 

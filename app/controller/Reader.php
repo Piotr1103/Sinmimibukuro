@@ -69,8 +69,8 @@ class Reader
 		return view($kaidan, [
 			'list' 	=> $list,
 			'caps' 	=> $caps,
-			'yid' 	=> $yid,	//沒有指定夜數時默認為1
-			'page' 	=> request()->param('page'),
+			'yid' 	=> $yid,						//沒有指定夜數時默認為1
+			'page' 	=> request()->param('page'),	//將page參數傳到下一頁或其他頁面
 		]);
 	}
 

@@ -40,8 +40,7 @@ class Smb
 		return view('index', [
 			'list' 	=> $list,
 			'caps' 	=> $caps,
-			//將page參數傳到下一頁或其他頁面
-			'page' 	=> request()->param('page'),
+			'page' 	=> request()->param('page'),	//將page參數傳到下一頁或其他頁面
 		]);
 	}
 
