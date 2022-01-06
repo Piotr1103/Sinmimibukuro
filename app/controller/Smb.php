@@ -74,7 +74,7 @@ class Smb
 				'infos' => $exception->getError(),
 				'url_text' => '返回添加',
 				//帶上page參數以便在toast可以有依據回到原先的頁面
-				'url_path' => url('/smb/create', ['yid'=>request()->param('yid'),'page'=>request()->param('page')]),
+				'url_path' => url('/smb/create', ['yid'=>$request->param('yid'),'page'=>$request->param('page')]),
 			]);
 		}
 
@@ -84,7 +84,7 @@ class Smb
 			'infos' 	=> ['恭喜，插入成功！'],
 			'url_text' 	=> '返回閱覽',
 			//帶上page參數以便在插入完成時可以有依據回到原先的頁面
-			'url_path' 	=> url('/smb', ['yid'=>request()->param('yid'),'page'=>request()->param('page')]),
+			'url_path' 	=> url('/smb', ['yid'=>$request->param('yid'),'page'=>$request->param('page')]),
 		]) : '插入失敗！';
 	}
 

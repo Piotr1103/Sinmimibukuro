@@ -67,7 +67,7 @@ class Fkd
 				'infos' => $exception->getError(),
 				'url_text' => '返回添加',
 				//帶上page參數以便在toast可以有依據回到原先的頁面
-				'url_path' => url('/fkd/create', ['page'=>request()->param('page')]),
+				'url_path' => url('/fkd/create', ['page'=>$request->param('page')]),
 			]);
 		}
 
@@ -76,7 +76,7 @@ class Fkd
 		return $id ? view('public/toast', [
 			'infos' => ['恭喜，插入成功！'],
 			'url_text' => '返回閱覽',
-			'url_path' => url('/fkd', ['page'=>request()->param('page')]),
+			'url_path' => url('/fkd', ['page'=>$request->param('page')]),
 		]) : '插入失敗！';
 	}
 
@@ -124,7 +124,7 @@ class Fkd
 				'infos' 	=> $exception->getError(),
 				'url_text' 	=> '繼續修改',
 				//帶上page參數以便在toast可以有依據回到原先的頁面
-				'url_path' 	=> url('/fkd/'.$id.'/edit', ['page'=>request()->param('page')]),
+				'url_path' 	=> url('/fkd/'.$id.'/edit', ['page'=>$request->param('page')]),
 			]);
 		}
 
@@ -133,7 +133,7 @@ class Fkd
 		return $id ? view('public/toast', [
 			'infos' => ['恭喜，修改成功！'],
 			'url_text' => '返回閱覽',
-			'url_path' => url('/fkd', ['page'=>request()->param('page')]),
+			'url_path' => url('/fkd', ['page'=>$request->param('page')]),
 		]) : '修改失敗！';
 	}
 
