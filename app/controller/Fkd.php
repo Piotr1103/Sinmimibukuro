@@ -162,5 +162,10 @@ class Fkd
 	public function delete($id)
 	{
 		//
+		return FkdModel::destroy($id) ? view('public/toast', [
+			'infos' => ['恭喜，刪除成功！'],
+			'url_text' => '返回閱覽',
+			'url_path' => url('/fkd', ['yid'=>request()->param('yid'),'page'=>request()->param('page')]),
+		]) : '刪除失敗！';
 	}
 }
