@@ -65,7 +65,7 @@ class Smb
 	public function save(Request $request)
 	{
 		//
-		$data = request()->param();
+		$data = $request->param();
 
 		try{
 			validate(SmbValidate::class)->batch(true)->check($data);

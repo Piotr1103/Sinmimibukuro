@@ -58,7 +58,7 @@ class Fkd
 	public function save(Request $request)
 	{
 		//
-		$data = request()->param();
+		$data = $request->param();
 
 		try{
 			validate(FkdValidate::class)->batch(true)->check($data);
