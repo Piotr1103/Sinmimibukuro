@@ -32,6 +32,7 @@ Route::group(function(){
 Route::group(function(){
 	Route::resource('smb', 'Smb');
 	Route::resource('fkd', 'Fkd');
+	Route::resource('role', 'Role');
 })->middleware(function($request, \Closure $next){
 	if(!session('?admin')){
 		return redirect('/');
