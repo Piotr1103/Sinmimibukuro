@@ -34,7 +34,7 @@ Route::group(function(){
 	Route::resource('fkd', 'Fkd');
 })->middleware(function($request, \Closure $next){
 	if(!session('?admin')){
-		return redirect('/login');
+		return redirect('/');
 	}
 
 	return $next($request);
