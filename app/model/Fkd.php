@@ -10,6 +10,11 @@ class Fkd extends Model
 		return $value ? $query->where('status', $value) : '';
 	}
 
+	public function searchTidAttr($query, $value)
+	{
+		return $value ? $query->where('tid', $value) : '';
+	}
+
 	public function getStatusAttr($value)
 	{
 		$status = [

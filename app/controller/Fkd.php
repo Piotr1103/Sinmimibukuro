@@ -19,7 +19,9 @@ class Fkd
 	public function index()
 	{
 		//
-		$list = FkdModel::order('tid')->paginate(5);
+		$list = FkdModel::withSearch(['tid'], [
+			'tid' => request()->param('tid'),
+		])->order('tid')->paginate(5);
 
 		$caps = Db::name('fkd')->field([
 			'tid',
