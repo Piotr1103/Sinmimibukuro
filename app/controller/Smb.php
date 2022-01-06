@@ -147,6 +147,22 @@ class Smb
 	}
 
 	/**
+	 * 透過ajax改變文章狀態，不需要進入修改表單更改
+	 */
+	public function restat($id)
+	{
+		$text = Db::name('smb')->find($id);
+
+		if($text['status']==0){
+			$text['status'] = 1;
+		}else{
+			$text['status'] = 0;
+		}
+
+		return SmbModel::update($text) ? '更新成功' : '更新失敗';
+	}
+
+	/**
 	 * 删除指定资源
 	 *
 	 * @param  int  $id
