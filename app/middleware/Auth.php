@@ -28,13 +28,17 @@ class Auth
 				}
 			}
 
+			//所有使用者和管理者都可以操作index方法
+			$roles[] = 'Smb/index';
+			$roles[] = 'Fkd/index';
+
 			if($roles[0] != 'All'){
 				$uri = $request->controller().'/'.$request->action();
 				if(!in_array($uri, $roles)){
 					return view('public/toast', [
-						'infos' => ['您不具備進行這個操作的權限'],
-						'url_text' => '去首頁',
-						'url_path' => url('/'),
+						'infos' 	=> ['您不具備進行這個操作的權限'],
+						'url_text' 	=> '去首頁',
+						'url_path' 	=> url('/'),
 					]);
 				}
 			}

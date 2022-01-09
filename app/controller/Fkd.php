@@ -7,10 +7,12 @@ use think\Request;
 use app\model\Fkd as FkdModel;
 use app\validate\Fkd as FkdValidate;
 use think\exception\ValidateException;
+use app\middleware\Auth as AuthMiddleware;
 use think\facade\Db;
 
 class Fkd
 {
+	protected $middleware = [AuthMiddleWare::class];
 	/**
 	 * 显示资源列表
 	 *

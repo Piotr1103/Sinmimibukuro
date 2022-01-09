@@ -4,13 +4,14 @@ declare (strict_types = 1);
 namespace app\controller;
 
 use think\Request;
+use app\model\Auth as AuthModel;
 use app\model\Role as RoleModel;
-use app\validate\Role as RoleValidate;
 use think\exception\ValidateException;
 use app\middleware\Auth as AuthMiddleware;
 use think\facade\Db;
 
-class Role
+
+class Auth
 {
 	protected $middleware = [AuthMiddleware::class];
 	/**
@@ -21,14 +22,11 @@ class Role
 	public function index()
 	{
 		//
-		$list = RoleModel::order('rid')->paginate([
-			'list_rows' 	=> 5,
-			'query' 		=> request()->param(),
-		]);
+		$list = AuthModel::with('role')->paginate(5);
 
 		foreach($list as $k=>$obj){
-			foreach($obj->auth as $au){
-				$obj->auths .= $au->name.' | ';
+			foreach($obj->role as $r){
+				$obj->roles .= $r->type.' | ';
 			}
 		}
 
@@ -45,9 +43,13 @@ class Role
 	public function create()
 	{
 		//
-		$rid = Db::name('role')->max('rid');
+		$auid = Db::name('auth')->max('auid');
+		$roles = RoleModel::order('rid')->select();
 
-		return view('create', ['rid'=>$rid,]);
+		return view('create', [
+			'auid' 		=> $auid,
+			'roles' 	=> $roles,
+		]);
 	}
 
 	/**
@@ -61,22 +63,14 @@ class Role
 		//
 		$data = $request->param();
 
-		try{
-			validate(RoleValidate::class)->batch(true)->check($data);
-		}catch(ValidateException $exception){
-			return view('public/toast', [
-				'infos' => $exception->getError(),
-				'url_text' => '繼續新增',
-				'url_path' => url('role/create'),
-			]);
-		}
+		$data['password'] = sha1($data['password']);
+		$auid = AuthModel::create($data)->getData('auid');
+		AuthModel::find($auid)->role()->saveAll($data['role']);
 
-		$id = RoleModel::create($data)->getData('rid');
-
-		return $id ? view('public/toast', [
-			'infos' => ['恭喜，新增成功！'],
-			'url_text' => '返回管理',
-			'url_path' => url('/role'),
+		return $auid ? view('public/toast', [
+			'infos' 	=> ['恭喜，新增成功！'],
+			'url_text' 	=> '返回權限列表',
+			'url_path' 	=> url('/auth'),
 		]) : '新增失敗！';
 	}
 
@@ -100,9 +94,6 @@ class Role
 	public function edit($id)
 	{
 		//
-		return view('edit', [
-			'obj' => RoleModel::find($id),
-		]);
 	}
 
 	/**
@@ -115,15 +106,6 @@ class Role
 	public function update(Request $request, $id)
 	{
 		//
-		$data = $request->param();
-
-		$id = RoleModel::update($data)->getData('id');
-
-		return $id ? view('public/toast', [
-			'infos' => ['恭喜，修改成功！'],
-			'url_text' => '返回管理',
-			'url_path' => url('/role'),
-		]) : '修改失敗！';
 	}
 
 	/**
@@ -134,7 +116,6 @@ class Role
 	 */
 	public function delete($id)
 	{
-		//透過ajax進行刪除
-		return RoleModel::destroy($id) ? '恭喜，'.$id.'刪除成功！' : '刪除失敗！';
+		//
 	}
 }
