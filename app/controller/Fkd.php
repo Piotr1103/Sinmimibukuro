@@ -44,9 +44,18 @@ class Fkd
 	 */
 	public function create()
 	{
-		//tid是資料庫中找到的最大序數
-		$tid = Db::name('fkd')->max('tid');
-		return view('create', ['tid'=>$tid]);
+		//
+		$fkd = Db::name('fkd');
+		$tid = $fkd->max('tid');						//tid是資料庫中找到的最大序數
+		$yid = $fkd->max('yid');						//yid是資料庫中找到的最大夜數
+		$cid = $fkd->where('yid', $yid)->max('cid');	//tid是資料庫中找到最大夜數的最大章數
+		$sid = $fkd->where('yid', $yid)->max('sid');	//sid是資料庫中找到最大夜數的最大回數
+		return view('create', [
+			'tid' => $tid,
+			'yid' => $yid,
+			'cid' => $cid,
+			'sid' => $sid,
+		]);
 	}
 
 	/**

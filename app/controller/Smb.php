@@ -51,9 +51,18 @@ class Smb
 	 */
 	public function create()
 	{
-		//tid是資料庫中找到的最大序數
-		$tid = Db::name('smb')->max('tid');
-		return view('create', ['tid'=>$tid]);
+		//
+		$smb = Db::name('smb');
+		$tid = $smb->max('tid');						//tid是資料庫中找到的最大序數
+		$yid = $smb->max('yid');						//yid是資料庫中找到的最大夜數
+		$cid = $smb->where('yid', $yid)->max('cid');	//cid是資料庫中找到最大夜數的最大章數
+		$sid = $smb->where('yid', $yid)->max('sid');	//sid是資料庫中找到最大夜數的最大回數
+		return view('create', [
+			'tid' => $tid,
+			'yid' => $yid,
+			'cid' => $cid,
+			'sid' => $sid,
+		]);
 	}
 
 	/**
