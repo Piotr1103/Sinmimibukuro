@@ -1,6 +1,6 @@
 {extend name="public/base"}
 
-{block name="title"}角色管理{/block}
+{block name="title"}權限 - 管理{/block}
 
 {block name="main"}
 	<div class="container mt-5">
@@ -42,4 +42,24 @@
 			</aside>
 		</div>
 	</div>
+{/block}
+
+{block name="js"}
+	<script type="text/javascript">
+		$('.btn-delete').click(function(){
+			let auid = $(this).data('auid')
+			let flag = confirm('確定要刪除'+auid+'號管理員嗎？')
+			if(flag){
+				$.ajax({
+					url: {:url('auth/')}+auid,
+					type: 'delete',
+					dataType: 'text',
+					success: function(e){
+						alert(e)
+						location.reload()
+					}
+				})
+			}
+		})
+	</script>
 {/block}
