@@ -134,7 +134,9 @@ class Role
 	 */
 	public function delete($id)
 	{
-		//透過ajax進行刪除
+		//先刪除access表中的關聯管理員
+		RoleModel::find($id)->auth()->detach();
+
 		return RoleModel::destroy($id) ? '恭喜，'.$id.'刪除成功！' : '刪除失敗！';
 	}
 }
