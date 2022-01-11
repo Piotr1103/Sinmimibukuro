@@ -1,0 +1,119 @@
+{extend name="public/base"}
+
+{block name="title"}耳袋地圖{/block}
+
+{block name="main"}
+	<div id="map" class="mt-5"></div>
+{/block}
+
+{block name="js"}
+	<script>
+		// $(function(){
+		// 	$('#think_page_trace_open').hide()
+		// })
+
+		//以SVG標記法繪製帶點圖標
+		function pinSymbol(color) {
+			return {
+				path: //旗桿
+					'M0 0'+			//旗桿起點
+					'V -43'+		//往上到-43，多出的-3是旗頂球
+					'H 1'+			//往右到1
+					'V 0 z'+		//往下回到0閉合
+					//旗面
+					'M1 -40'+		//旗面起點
+					'H 30'+			//往右到30
+					'V -20'+		//往下到-20
+					'H 1 z',		//往左回到1閉合
+				fillColor: color,
+				fillOpacity: 1,
+				strokeColor: '#000',
+				strokeWeight: 2,
+				scale: 1,
+			};
+		}
+
+		//以夜數來決定圖標顏色，以通販版封面底色為準，舊怪談為自定義
+		pins = [
+			"#666665",	//灰色		舊怪談
+			"#4d4dff",	//紫藍色		第一夜
+			"#e62e00",	//橘紅色		第二夜
+			"#ffff66",	//亮黃色		第三夜
+			"#00b359",	//粉綠色		第四夜
+			"#ff80bf",	//粉紅色		第五夜
+			"#c2c2a3",	//亮褐色		第六夜
+			"#664b00",	//深棕色		第七夜
+			"#b3d9ff",	//淡藍色		第八夜
+			"#cc99ff",	//粉紫色		第九夜
+			"#ffffff"	//白色		第十夜
+		];
+
+		function initMap(){
+			//將地圖中心定位在北緯35.25度、東經137.75度好將日本兩大都會區以8倍放大出來
+			const map = new google.maps.Map(document.getElementById("map"), {
+				zoom: 8,
+				center: {lat:35.25, lng:137.75},
+			});
+
+			//圖標資訊框
+			let info = new google.maps.InfoWindow;
+
+			//透過ajax從控制器取得所有地點資料
+			$.get('/map/markers.html', function(markers){
+				//將取得的資料物件分析取出
+				markers.forEach(function(mark){
+					//地點模型資料
+					let id 		= mark.id
+					let mid 	= mark.mid
+					let name 	= mark.name
+					let address = mark.address
+					let kana 	= mark.kana
+					let hanasi 	= mark.hanasi
+					let yoru 	= mark.yoru
+					let img 	= mark.img
+					//經緯度物件
+					let point 	= new google.maps.LatLng(parseFloat(mark.lat),parseFloat(mark.lng));
+					//對資訊框塞入顯示元素
+					let infocont 	= document.createElement('div')
+					let strong 		= document.createElement('strong')
+					strong.textContent = name
+					infocont.appendChild(strong)
+					infocont.appendChild(document.createElement('br'))
+
+					let infoadd 	= document.createElement('p')
+					let infokana 	= document.createElement('p')
+					let infohanasi 	= document.createElement('p')
+					let infoimg 	= document.createElement('img')
+
+					infoadd.textContent 	= address
+					infokana.textContent 	= kana
+					infohanasi.textContent 	= hanasi
+					//img元素相關設定
+					infoimg.src 			= img
+					infoimg.width 			= 400
+
+					infocont.appendChild(infoadd)
+					infocont.appendChild(infokana)
+					infocont.appendChild(infohanasi)
+					infocont.appendChild(infoimg)
+
+					let marker = new google.maps.Marker({
+						map: 		map,
+						position: 	point,
+					})
+
+					//將製作好的圖標搭配夜數顏色
+					marker.setIcon(pinSymbol(pins[yoru]))
+
+					//圖標被點擊出現資訊框
+					marker.addListener('click', function(){
+						info.setContent(infocont)
+						info.open(map, marker)
+					})
+				})
+			})
+		}
+	</script>
+	<script defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiQp8Mk4FD8P37U7OPUeqknIrthRotgxk&callback=initMap"></script>
+{/block}
