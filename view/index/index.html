@@ -6,7 +6,15 @@
 	<div class="container mt-5">
 		<div class="row">
 			<article class="col-md-10 mt-5">
-				<div class="border m-3 p-3 shadow">
+				{volist name="cont" id="obj"}
+					<div class="border border-info rounded m-5 p-5 shadow">
+						<h2 class="text-center mb-5">{$obj.title}</h2>
+						{$obj.content|raw}
+						<p class="text-right text-sm">{$obj.create_time}</p>
+					</div>
+				{/volist}
+
+				<div class="pager">
 					{$cont|raw}
 				</div>
 			</article>
