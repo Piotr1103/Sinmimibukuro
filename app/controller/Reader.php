@@ -28,9 +28,10 @@ class Reader
 
 		switch($kaidan){
 			case 'smb':
-				$list = SmbModel::withSearch(['status','cid'], [
+				$list = SmbModel::withSearch(['status','cid','yid'], [
 					'status' 	=> 1,
 					'cid' 		=> request()->param('cid'),	//選擇從屬於同一章的所有文章
+					'yid' 		=> request()->param('yid'),	//選擇從屬於同一夜的所有文章
 				])->paginate([
 					'list_rows' => 5,
 					'query' 	=> request()->param(),
