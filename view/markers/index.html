@@ -1,0 +1,70 @@
+{extend name="public/base"}
+
+{block name="title"}地圖 - 管理{/block}
+
+{block name="main"}
+	<div class="container mt-5">
+		<div class="row">
+			<article class="col-md-10 mt-5">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th class="text-center">序號</th>
+							<th class="text-center">地名</th>
+							<th class="text-center">地址</th>
+							<th class="text-center">出處</th>
+							<th class="text-center">夜數</th>
+							<th class="text-center">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						{assign name="empty" value='<tr><td class="text-center text-danger" colspan="6">沒有數據！</td></tr>'}
+						{volist name="list" id="obj" empty="$empty"}
+							<tr>
+								<td class="text-center">{$obj.mid}</td>
+								<td class="text-left">{$obj.name}</td>
+								<td class="text-left">{$obj.address|mb_substr=0,6}…</td>
+								<td class="text-left">{$obj.hanasi}</td>
+								<td class="text-center">{$obj.yoru}</td>
+								<td class="text-center">
+									<button class="btn btn-danger btn-delete btn-sm mt-1 mt-lg-0" data-id="{$obj.id}">刪除</button>
+									<a href="{:url('/markers/'.$obj.id.'/edit')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-warning btn-sm mt-1 mt-lg-0">修改</a>
+								</td>
+							</tr>
+						{/volist}
+					</tbody>
+				</table>
+
+				<div class="pager">
+					{$list|raw}
+				</div>
+			</article>
+
+			<aside class="col-md-2 mt-lg-5">
+				{if (null != session('admin')) AND (session('admin') != '')}
+					<a href="{:url('markers/create')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-info aside">添加圖標</a><hr>
+				{/if}
+			</aside>
+		</div>
+	</div>
+{/block}
+
+{block name="js"}
+	<script type="text/javascript">
+		$('.btn-delete').click(function(){
+			let id = $(this).data('id')
+			let flag = confirm('確定要刪除第'+id+'號圖標嗎？')
+			if(flag){
+				$.ajax({
+					url: {:url('markers/')}+id,
+					type: 'delete',
+					dataType: 'text',
+					success: function(e){
+						alert(e)
+						location.reload()
+					}
+				})
+			}
+		})
+	</script>
+{/block}
