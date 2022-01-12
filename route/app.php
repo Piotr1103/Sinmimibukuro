@@ -27,6 +27,7 @@ Route::group(function(){
 	Route::resource('role', 'Role');
 	Route::resource('auth', 'Auth');
 	Route::resource('bulletin', 'Bulletin');
+	Route::resource('markers', 'Markers');
 })->middleware(function($request, \Closure $next){
 	if(!session('?admin')){
 		return redirect('/');
