@@ -17,7 +17,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						{assign name="empty" value="<tr><td class="text-center text-muted" colspan="5">沒有數據！</td></tr>"}
+						{assign name="empty" value='<tr><td class="text-center text-danger" colspan="5">沒有數據！</td></tr>'}
 						{volist name="list" id="obj" empty="$empty"}
 							<tr>
 								<td class="text-center">{$obj.rid}</td>
