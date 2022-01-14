@@ -23,7 +23,7 @@ class Auth
 	public function index()
 	{
 		//
-		$list = AuthModel::with('role')->paginate(5);
+		$list = AuthModel::with('role')->order('auid')->paginate(5);
 
 		foreach($list as $k=>$obj){
 			foreach($obj->role as $r){
