@@ -40,8 +40,29 @@ html, body {
 
 body {
 	background-image: url(https://www.itsfun.com.tw/cacheimg/e9/96/03a040e95d5b942fe14fcbf04e26.jpg);
-	background-size: cover;
+	background-size: cover;			/*盡可能覆蓋背景*/
 	background-position: center;
 	background-repeat: no-repeat;
-	background-attachment: fixed; /*讓圖片看起來會隨著滑鼠滾動*/
+	background-attachment: fixed;	/*讓圖片看起來會隨著滑鼠滾動*/
+}
+
+form, table {
+	background-color: white;
+}
+
+form {
+	padding: 10px;
+	border-radius: 10px;
+}
+
+ol.carousel-indicators li, ol.carousel-indicators li.active {
+	/*float: left;*/
+	width: 15px;
+	height: 15px;
+	border-radius: 100px;
+	border: 0;
+}
+
+ol.carousel-indicators li.active {
+	background: cyan;
 }
