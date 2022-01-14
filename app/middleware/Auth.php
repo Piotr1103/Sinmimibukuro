@@ -28,10 +28,6 @@ class Auth
 				}
 			}
 
-			//所有使用者和管理者都可以操作index方法
-			$roles[] = 'Smb/index';
-			$roles[] = 'Fkd/index';
-
 			if($roles[0] != 'All'){
 				$uri = $request->controller().'/'.$request->action();
 				if(!in_array($uri, $roles)){
