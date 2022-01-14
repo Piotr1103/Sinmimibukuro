@@ -6,13 +6,13 @@
 	<div class="container mt-5">
 		<div class="row">
 			<div class="col-md-12 mt-5 mx-0 mx-lg-5">
-				<form action="{:url('/role/'.$obj.rid)}" method="post">
+				<form action="{:url('/role/'.$obj.rid)}?page={:request()->param('page')}" method="post">
 					<input type="hidden" name="_method" value="put">
 					<fieldset class="w-100">
 						<div class="form-group row">
 							<label for="rid" class="col-2 col-form-label">序號</label>
 							<div class="col-10">
-								<input type="text" id="rid" name="rid" class="form-control" value="{$obj.rid}" disabled>
+								<input type="text" id="rid" name="rid" class="form-control" value="{$obj.rid}" readonly>
 							</div>
 						</div>
 

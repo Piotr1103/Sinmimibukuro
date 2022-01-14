@@ -33,6 +33,7 @@ class Auth
 
 		return view('index', [
 			'list' => $list,
+			'page' 	=> request()->param('page'),	//將page參數傳到下一頁或其他頁面
 		]);
 	}
 
@@ -70,7 +71,7 @@ class Auth
 			return view('public/toast', [
 				'infos' => $exception->getError(),
 				'url_text' => '返回新增',
-				'url_path' => url('/auth/create'),
+				'url_path' => url('/auth/create', ['page'=>$request->param('page')]),
 			]);
 		}
 
@@ -81,7 +82,7 @@ class Auth
 		return $auid ? view('public/toast', [
 			'infos' 	=> ['恭喜，新增成功！'],
 			'url_text' 	=> '返回權限列表',
-			'url_path' 	=> url('/auth'),
+			'url_path' 	=> url('/auth', ['page'=>$request->param('page')]),
 		]) : '新增失敗！';
 	}
 
@@ -138,7 +139,7 @@ class Auth
 			return view('public/toast', [
 				'infos' => $exception->getError(),
 				'url_text' => '返回修改',
-				'url_path' => url('/auth/'.$id.'/edit'),
+				'url_path' => url('/auth/'.$id.'/edit', ['page'=>$request->param('page')]),
 			]);
 		}
 
@@ -156,7 +157,7 @@ class Auth
 		return AuthModel::update($data) ? view('public/toast', [
 			'infos' => ['恭喜，修改成功！'],
 			'url_text' => '返回權限列表',
-			'url_path' => url('/auth'),
+			'url_path' => url('/auth', ['page'=>$request->param('page')]),
 		]) : '修改失敗！';
 	}
 

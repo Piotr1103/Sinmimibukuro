@@ -25,7 +25,7 @@
 							<td class="text-center">{$obj.create_time}</td>
 							<td class="text-center">
 								<button class="btn btn-danger btn-sm btn-delete mt-1 mt-lg-0" data-auid="{$obj.auid}">刪除</button>
-								<a href="{:url('/auth/'.$obj.auid.'/edit')}" class="btn btn-warning btn-sm mt-1 mt-lg-0">修改</a>
+								<a href="{:url('/auth/'.$obj.auid.'/edit')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-warning btn-sm mt-1 mt-lg-0">修改</a>
 							</td>
 						</tr>
 						{/volist}
@@ -38,7 +38,7 @@
 			</article>
 
 			<aside class="col-md-2 mt-5">
-				<a href="{:url('/auth/create')}" class="btn btn-info aside">添加權限</a href="#">
+				<a href="{:url('/auth/create')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-info aside">添加權限</a href="#">
 			</aside>
 		</div>
 	</div>

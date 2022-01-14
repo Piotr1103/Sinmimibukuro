@@ -6,7 +6,7 @@
 	<div class="container mt-5" id="app">
 		<div class="row">
 			<div class="col-md-12 mt-5 mx-0 mx-lg-5">
-				<form action="{:url('/auth')}" method="post">
+				<form action="{:url('/auth')}?page={:request()->param('page')}" method="post">
 					<fieldset class="w-100">
 						<div class="form-group row">
 							<label for="auid" class="col-2 col-form-label">管理序號</label>

@@ -34,6 +34,7 @@ class Role
 
 		return view('index', [
 			'list' => $list,
+			'page' 	=> request()->param('page'),	//將page參數傳到下一頁或其他頁面
 		]);
 	}
 
@@ -67,7 +68,7 @@ class Role
 			return view('public/toast', [
 				'infos' => $exception->getError(),
 				'url_text' => '繼續新增',
-				'url_path' => url('role/create'),
+				'url_path' => url('/role/create', ['page'=>$request->param('page')]),
 			]);
 		}
 
@@ -76,7 +77,7 @@ class Role
 		return $id ? view('public/toast', [
 			'infos' => ['恭喜，新增成功！'],
 			'url_text' => '返回管理',
-			'url_path' => url('/role'),
+			'url_path' => url('/role', ['page'=>$request->param('page')]),
 		]) : '新增失敗！';
 	}
 
@@ -117,12 +118,20 @@ class Role
 		//
 		$data = $request->param();
 
-		$id = RoleModel::update($data)->getData('id');
+		try{
+			validate(RoleValidate::class)->batch(true)->check($data);
+		}catch(ValidateException $exception){
+			return view('public/toast', [
+				'infos' => $exception->getError(),
+				'url_text' => '繼續修改',
+				'url_path' => url('/role/'.$id.'/edit', ['page'=>$request->param('page')]),
+			]);
+		}
 
-		return $id ? view('public/toast', [
+		return RoleModel::update($data) ? view('public/toast', [
 			'infos' => ['恭喜，修改成功！'],
 			'url_text' => '返回管理',
-			'url_path' => url('/role'),
+			'url_path' => url('/role', ['page'=>$request->param('page')]),
 		]) : '修改失敗！';
 	}
 

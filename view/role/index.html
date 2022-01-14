@@ -27,7 +27,7 @@
 								<td class="text-center">
 									<!-- 由於在RoleModel中已將rid設為主鍵，故必須將rid傳給控制器的delete方法方能刪除 -->
 									<button class="btn btn-danger btn-delete btn-sm mt-1 mt-lg-0" data-rid="{$obj.rid}">刪除</button>
-									<a href="{:url('/role/'.$obj.rid.'/edit')}" class="btn btn-warning btn-sm mt-1 mt-lg-0">修改</a>
+									<a href="{:url('/role/'.$obj.rid.'/edit')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-warning btn-sm mt-1 mt-lg-0">修改</a>
 								</td>
 							</tr>
 						{/volist}
@@ -40,7 +40,7 @@
 			</article>
 
 			<aside class="col-md-2 mt-5">
-				<a href="{:url('role/create')}" class="btn btn-info aside">添加角色</a>
+				<a href="{:url('role/create')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-info aside">添加角色</a>
 			</aside>
 		</div>
 	</div>

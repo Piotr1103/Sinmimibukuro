@@ -7,10 +7,12 @@ use think\Request;
 use app\model\Bulletin as BulletinModel;
 use think\exception\ValidateException;
 use app\validate\Bulletin as BulletinValidate;
+use app\middleware\Auth as AuthMiddleware;
 use think\facade\Db;
 
 class Bulletin
 {
+	protected $middleware = [AuthMiddleware::class];
 	/**
 	 * 显示资源列表
 	 *
@@ -25,6 +27,7 @@ class Bulletin
 
 		return view('index', [
 			'list' => $list,
+			'page' 	=> request()->param('page'),	//將page參數傳到下一頁或其他頁面
 		]);
 	}
 
