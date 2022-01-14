@@ -15,7 +15,7 @@ class Bulletin extends Validate
 	 */
 	protected $rule = [
 		'bid' 		=> 'require|number|gt:0|max:5',
-		'title' 	=> 'require|chsDash|max:20',
+		'title' 	=> 'require|max:20',
 		'content' 	=> 'require',
 		'__token__' => 'require|token',
 	];
@@ -32,7 +32,6 @@ class Bulletin extends Validate
 		'bid.gt' 			=> '序號必須大於0',
 		'bid.max' 			=> '序號最多只能5位',
 		'title.require' 	=> '必須填寫標題',
-		'title.chsDash' 	=> '標題只能用漢字、英數、下劃線和破折號',
 		'title.max' 		=> '標題最多只能20位',
 		'content.require' 	=> '內容不得為空',
 		'__token__.require' => '令牌不得為空',
