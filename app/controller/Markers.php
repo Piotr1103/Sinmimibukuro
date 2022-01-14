@@ -7,9 +7,11 @@ use think\Request;
 use app\model\Markers as MarkersModel;
 use think\exception\ValidateException;
 use app\validate\Markers as MarkersValidate;
+use app\middleware\Auth as AuthMiddleware;
 
 class Markers
 {
+	protected $middleware = [AuthMiddleware::class];
 	/**
 	 * 显示资源列表
 	 *
