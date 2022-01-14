@@ -6,19 +6,23 @@
 	<div class="container mt-5">
 		<div class="row">
 			<article class="col-md-10 mt-5">
+				<!-- 圖庫最新圖片*10：圖片輪播 -->
 				<div id="piccarousel" class="carousel slide" align="center" data-ride="carousel">
-					<ul class="carousel-indicators">
+					<ol class="carousel-indicators">
 						{for start="0" end="10" name="i"}
 							<li data-target="#piccarousel" data-slide-to="{$i}" class="{eq name='$i' value='0'}active{/eq}"></li>
 						{/for}
-					</ul>
+					</ol>
 					<div class="carousel-inner">
 						{volist name="carousel" id="obj" key="k"}
 							<div class="carousel-item {eq name='$k' value='1'}active{/eq}">
-								<img height="500px" src="{$obj.img}">
+								<a href="{$obj.link}" title="{$obj.title}">
+									<img height="500px" src="{$obj.img}">
+								</a>
 							</div>
 						{/volist}
 					</div>
+					<!-- 圖片輪播上下張連結 -->
 					<a href="#piccarousel" class="carousel-control-prev" data-slide="prev">
 						<span class="carousel-control-prev-icon"></span>
 					</a>
@@ -27,6 +31,7 @@
 					</a>
 				</div>
 
+				<!-- 最新公告 -->
 				{volist name="cont" id="obj"}
 					<div class="border border-info rounded bg-light my-5 p-5 shadow">
 						<h2 class="text-center mb-5">{$obj.title}</h2>
@@ -39,6 +44,7 @@
 					{$cont|raw}
 				</div>
 
+				<!-- 說明：摺疊菜單 -->
 				<div id="accordion">
 					{volist name="about" id="obj" key="k"}
 						<div class="card">
@@ -58,7 +64,25 @@
 			</article>
 
 			<aside class="col-md-2 mt-5">
-				{$aside|raw}
+				<!-- 測蘭廣告示例 -->
+				<div class="ws-sidebar-1">
+					<div id="media_image-22" class="et_pb_widget widget_media_image">
+						<a href="/google-adwords?camplink=FreeStuff&amp;campname=Grader&amp;cid=Web_Any_Banner_AdWords_MeasureUp_PerfGrader">
+							<img width="980" height="1416" src="https://www.wordstream.com/wp-content/uploads/2021/12/ws-sidebar-offer-google-ads-performance-grader.png.webp" class="image wp-image-51065  attachment-full size-full" alt="wordstream google ads performance grader" loading="lazy" style="max-width: 100%; height: auto;" srcset="https://www.wordstream.com/wp-content/uploads/2021/12/ws-sidebar-offer-google-ads-performance-grader.png.webp 980w, https://www.wordstream.com/wp-content/uploads/2021/12/ws-sidebar-offer-google-ads-performance-grader-208x300.png.webp 208w, https://www.wordstream.com/wp-content/uploads/2021/12/ws-sidebar-offer-google-ads-performance-grader-709x1024.png.webp 709w, https://www.wordstream.com/wp-content/uploads/2021/12/ws-sidebar-offer-google-ads-performance-grader-768x1110.png.webp 768w" sizes="(max-width: 980px) 100vw, 980px">
+						</a>
+					</div>
+					<div class="ws-card-v4">
+						<h4 class="ws-text-v7 text-white">Sign up for our weekly newsletter!</h4>
+						<div class="ws-form-v2">
+							<script defer="" src="//marketing.wordstream.com/js/forms2/js/forms2.min.js"></script>
+							<div id="media_image-23" class="et_pb_widget widget_media_image">
+								<a href="/google-adwords?camplink=FreeStuff&amp;campname=Grader&amp;cid=Web_Any_Banner_AdWords_MeasureUp_PerfGrader">
+									<img width="980" height="1416" src="https://www.wordstream.com/wp-content/uploads/2021/12/ws-sidebar-offer-google-ads-performance-grader.png.webp" class="image wp-image-51065  attachment-full size-full" alt="wordstream google ads performance grader" loading="lazy" style="max-width: 100%; height: auto;" srcset="https://www.wordstream.com/wp-content/uploads/2021/12/ws-sidebar-offer-google-ads-performance-grader.png.webp 980w, https://www.wordstream.com/wp-content/uploads/2021/12/ws-sidebar-offer-google-ads-performance-grader-208x300.png.webp 208w, https://www.wordstream.com/wp-content/uploads/2021/12/ws-sidebar-offer-google-ads-performance-grader-709x1024.png.webp 709w, https://www.wordstream.com/wp-content/uploads/2021/12/ws-sidebar-offer-google-ads-performance-grader-768x1110.png.webp 768w" sizes="(max-width: 980px) 100vw, 980px">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
 			</aside>
 		</div>
 	</div>
