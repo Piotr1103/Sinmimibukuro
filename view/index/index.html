@@ -6,8 +6,29 @@
 	<div class="container mt-5">
 		<div class="row">
 			<article class="col-md-10 mt-5">
+				<div id="piccarousel" class="carousel slide" align="center" data-ride="carousel">
+					<ul class="carousel-indicators">
+						{for start="0" end="10" name="i"}
+							<li data-target="#piccarousel" data-slide-to="{$i}" class="{eq name='$i' value='0'}active{/eq}"></li>
+						{/for}
+					</ul>
+					<div class="carousel-inner">
+						{volist name="carousel" id="obj" key="k"}
+							<div class="carousel-item {eq name='$k' value='1'}active{/eq}">
+								<img height="500px" src="{$obj.img}">
+							</div>
+						{/volist}
+					</div>
+					<a href="#piccarousel" class="carousel-control-prev" data-slide="prev">
+						<span class="carousel-control-prev-icon"></span>
+					</a>
+					<a href="#piccarousel" class="carousel-control-next" data-slide="next">
+						<span class="carousel-control-next-icon"></span>
+					</a>
+				</div>
+
 				{volist name="cont" id="obj"}
-					<div class="border border-info rounded m-5 p-5 shadow">
+					<div class="border border-info rounded bg-light my-5 p-5 shadow">
 						<h2 class="text-center mb-5">{$obj.title}</h2>
 						{$obj.content|raw}
 						<p class="text-right text-sm">{$obj.create_time}</p>
@@ -16,6 +37,23 @@
 
 				<div class="pager">
 					{$cont|raw}
+				</div>
+
+				<div id="accordion">
+					{volist name="about" id="obj" key="k"}
+						<div class="card">
+							<a href="#{$obj.title}" class="card-link text" data-toggle="collapse">
+								<div class="card-header">
+									{$obj.title}
+								</div>
+							</a>
+							<div id="{$obj.title}" class="collapse {eq name='$k' value='1'}show{/eq}" data-parent="#accordion">
+								<div class="card-body">
+									{$obj.content|raw}
+								</div>
+							</div>
+						</div>
+					{/volist}
 				</div>
 			</article>
 
