@@ -6,13 +6,13 @@
 	<div class="container mt-5" id="app">
 		<div class="row">
 			<div class="col-md-12 mt-5 mx-0 mx-lg-5">
-				<form action="{:url('/auth/'.$auth.auid)}" method="post">
+				<form action="{:url('/auth/'.$auth.auid)}?page={:request()->param('page')}" method="post">
 					<input type="hidden" name="_method" value="put">
 					<fieldset class="w-100">
 						<div class="form-group row">
 							<label for="auid" class="col-2 col-form-label">管理序號</label>
 							<div class="col-10">
-								<input type="text" id="auid" name="auid" class="form-control" value="{$auth.auid}" disabled>
+								<input type="text" id="auid" name="auid" class="form-control" value="{$auth.auid}" readonly>
 							</div>
 						</div>
 
@@ -26,14 +26,22 @@
 						<div class="form-group row">
 							<label for="newpassword" class="col-2 col-form-label">新密碼</label>
 							<div class="col-10">
-								<input type="password" id="newpassword" name="newpassword" class="form-control" placeholder="不修改密碼則不要填寫" v-model="newpwd">
+								<input type="password" id="newpassword" name="newpassword" class="form-control" placeholder="不修改密碼則不要填寫" v-model="newpwd" :disabled="!isPwdChanged">
 							</div>
 						</div>
 
 						<div class="form-group row">
 							<label for="newpasswordnot" class="col-2 col-form-label">確認密碼</label>
 							<div class="col-10">
-								<input type="password" id="newpasswordnot" name="newpasswordnot" class="form-control" placeholder="不修改密碼則不要填寫" v-model="pwdnot" :style="compare">
+								<input type="password" id="newpasswordnot" name="newpasswordnot" class="form-control" placeholder="不修改密碼則不要填寫" v-model="pwdnot" :style="compare" :disabled="!isPwdChanged">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="" class="col-2 col-form-label"></label>
+							<div class="col-10">
+								<input type="checkbox" id="changepwd" v-model="isPwdChanged">
+								<label for="changepwd" class="col-form-label-sm">是否更改密碼？(此選項未勾選的話則不會改動)</label>
 							</div>
 						</div>
 
@@ -83,6 +91,7 @@
 				newpwd: '',
 				pwdnot: '',
 				isChanged: false,
+				isPwdChanged: false,
 			},
 			methods: {
 				change: function(){
