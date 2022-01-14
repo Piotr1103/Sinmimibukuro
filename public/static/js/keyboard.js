@@ -111,6 +111,7 @@ function keydown(evt) {
 				addCircum('code');
 				break;
 			case 68://d
+				evt.preventDefault();
 				addCircum('div');
 				break;
 			case 70://f
