@@ -66,3 +66,15 @@ ol.carousel-indicators li, ol.carousel-indicators li.active {
 ol.carousel-indicators li.active {
 	background: cyan;
 }
+
+@media (min-width: 425px) {
+	.carousel-item img {
+		height: 500px;
+	}
+}
+
+@media (max-width: 425px) {
+	.carousel-item img {
+		height: 400px;
+	}
+}
