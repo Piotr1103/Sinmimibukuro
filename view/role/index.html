@@ -26,8 +26,8 @@
 								<td class="sm-hidden text-center">{$obj.auths|substr=0,-3}</td>
 								<td class="text-center">
 									<!-- 由於在RoleModel中已將rid設為主鍵，故必須將rid傳給控制器的delete方法方能刪除 -->
-									<button class="btn btn-danger btn-delete btn-sm mt-1 mt-lg-0" data-rid="{$obj.rid}">刪除</button>
-									<a href="{:url('/role/'.$obj.rid.'/edit')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-warning btn-sm mt-1 mt-lg-0">修改</a>
+									<button class="btn btn-danger btn-delete btn-sm mt-1" data-rid="{$obj.rid}">刪除</button>
+									<a href="{:url('/role/'.$obj.rid.'/edit')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-warning btn-sm mt-1">修改</a>
 								</td>
 							</tr>
 						{/volist}
