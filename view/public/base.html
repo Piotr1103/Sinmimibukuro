@@ -82,7 +82,7 @@
 		</nav>
 	</header>
 
-	<div id="login" class="modal">
+	<div id="login" class="modal mt-5">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -113,11 +113,29 @@
 							<!-- <button class="btn btn-success w-100">登錄</button> -->
 						</div>
 					</form>
-					<p id="hint"></p>
 				</div>
 				<div class="modal-footer">
 					<button id="logger" class="btn btn-success">登錄</button>
 					<button class="btn btn-secondary" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="line" class="modal mt-5">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5>加入Line聊天</h5>
+					<button class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<img src="/static/img/line.jpg" width="100%">
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" data-dismiss="modal">關閉</button>
 				</div>
 			</div>
 		</div>
@@ -131,7 +149,7 @@
 				<span class="font-weight-bold ml-4">聯繫方式和其他產品：</span>
 			</div>
 			<div>
-				<a href="#" class="mr-4 text-reset">
+				<a href="#" class="mr-4 text-reset" data-toggle="modal" data-target="#line">
 					<i class="fab fa-line fa-2x"></i>
 				</a>
 				<a href="https://github.com/Piotr1103" class="mr-4 text-reset">
@@ -181,10 +199,10 @@
 						<h6 class="text-uppercase font-weight-bold mb-4 mt-lg-0 mt-5">
 							聯繫方式
 						</h6>
-						<div class="ml-5 ml-lg-0 text-center">
-							<div class="ml-5 pl-5 ml-lg-5 pl-lg-0 text-left">
+						<div class="ml-5 ml-md-0 ml-lg-0 text-center">
+							<div class="ml-3 pl-3 ml-md-0 pl-md-0 ml-lg-5 pl-lg-0 text-left">
 								<p><i class="fas fa-home mr-1"></i>&emsp;XX市OO區</a></p>
-								<p><i class="fas fa-envelope mr-1"></i>&emsp;<a href="mailto:puyanjia92@gmail.com">puyanjia92@gmail.com</a></p>
+								<p><i class="fas fa-envelope mr-1"></i>&emsp;<a href="mailto:puyanjia92@gmail.com">寫信給我</a></p>
 								<p><i class="fas fa-phone mr-1"></i>&emsp;0980013155</p>
 								<p><i class="fas fa-print mr-1"></i>&emsp;04-22738423</p>
 							</div>
