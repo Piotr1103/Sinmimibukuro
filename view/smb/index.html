@@ -17,10 +17,10 @@
 						</div>
 						<div class="card-footer container">
 							<div class="row">
-								<div class="col-8">
+								<div class="col-12 col-lg-8">
 									{$obj.tid} - {$obj.create_time}&emsp;<span class="badge badge-{$obj.badge}">{$obj.status}</span>
 								</div>
-								<div class="col-4 text-right">
+								<div class="col-12 col-lg-4 text-right">
 									<form action="{:url('/smb/'.$obj.id)}?yid={empty name='yid'}1{else/}{$yid}{/empty}&page={empty name='page'}1{else/}{$page}{/empty}" method="post">
 										<input type="hidden" name="_method" value="delete">
 										<button class="btn btn-danger btn-delete btn-sm" data-tid="{$obj.tid}">刪除</button>
@@ -38,7 +38,7 @@
 				</div>
 			</article>
 
-			<aside class="col-md-2 mt-lg-5">
+			<aside class="col-md-2 mt-md-5">
 				{if (null != session('admin')) AND (session('admin') != '')}
 					<a href="{:url('smb/create')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-info aside">添加文章</a><hr>
 				{/if}

@@ -9,10 +9,10 @@
 				<table class="table table-bordered">
 					<thead class="thead-light">
 						<tr>
-							<th class="text-center">序號</th>
+							<th class="text-center">#</th>
 							<th class="text-center">名稱</th>
-							<th class="text-center">角色</th>
-							<th class="text-center">創建時間</th>
+							<th class="text-center lg-hidden">角色</th>
+							<th class="text-center sm-hidden">創建時間</th>
 							<th class="text-center">操作</th>
 						</tr>
 					</thead>
@@ -21,8 +21,8 @@
 						<tr>
 							<td class="text-center">{$obj.auid}</td>
 							<td class="text-center">{$obj.name}</td>
-							<td class="text-center">{$obj.roles|substr=0,-3}</td>
-							<td class="text-center">{$obj.create_time}</td>
+							<td class="lg-hidden text-center">{$obj.roles|substr=0,-3}</td>
+							<td class="sm-hidden text-center">{$obj.create_time}</td>
 							<td class="text-center">
 								<button class="btn btn-danger btn-sm btn-delete mt-1 mt-lg-0" data-auid="{$obj.auid}">刪除</button>
 								<a href="{:url('/auth/'.$obj.auid.'/edit')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-warning btn-sm mt-1 mt-lg-0">修改</a>

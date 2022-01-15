@@ -9,10 +9,10 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th class="text-center">序號</th>
+							<th class="text-center">#</th>
 							<th class="text-center">種類</th>
-							<th class="text-center">URI</th>
-							<th class="text-center">人員</th>
+							<th class="text-center lg-hidden">URI</th>
+							<th class="text-center sm-hidden">人員</th>
 							<th class="text-center">操作</th>
 						</tr>
 					</thead>
@@ -22,8 +22,8 @@
 							<tr>
 								<td class="text-center">{$obj.rid}</td>
 								<td class="text-center">{$obj.type}</td>
-								<td class="text-center">{$obj.uri}</td>
-								<td class="text-center">{$obj.auths|substr=0,-3}</td>
+								<td class="lg-hidden text-center">{$obj.uri}</td>
+								<td class="sm-hidden text-center">{$obj.auths|substr=0,-3}</td>
 								<td class="text-center">
 									<!-- 由於在RoleModel中已將rid設為主鍵，故必須將rid傳給控制器的delete方法方能刪除 -->
 									<button class="btn btn-danger btn-delete btn-sm mt-1 mt-lg-0" data-rid="{$obj.rid}">刪除</button>

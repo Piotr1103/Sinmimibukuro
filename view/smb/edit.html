@@ -5,41 +5,41 @@
 {block name="main"}
 	<div class="container mt-5">
 		<div class="row">
-			<div class="col-12 mt-5 mx-0 mx-lg-5">
+			<div class="col-md-12 col-lg-11 mt-5 mx-0 mx-lg-5">
 				<form action="{:url('/smb/'.$obj.id)}?page={:request()->param('page')}" method="post">
 					<input type="hidden" name="_method" value="put">
 					<fieldset class="w-100">
 						<div class="form-group row">
-							<label for="tid" class="col-2 col-form-label">序數</label>
-							<div class="col-10">
+							<label for="tid" class="col-3 col-md-2 col-form-label">序數</label>
+							<div class="col-9 col-md-10">
 								<input type="number" id="tid" name="tid" class="form-control" value="{$obj.tid}">
 							</div>
 						</div>
 
 						<div class="form-group row">
-							<label for="yid" class="col-2 col-form-label">夜數</label>
-							<div class="col-10">
+							<label for="yid" class="col-3 col-md-2 col-form-label">夜數</label>
+							<div class="col-9 col-md-10">
 								<input type="number" id="yid" name="yid" class="form-control" value="{$obj.yid}">
 							</div>
 						</div>
 
 						<div class="form-group row">
-							<label for="cid" class="col-2 col-form-label">章數</label>
-							<div class="col-10">
+							<label for="cid" class="col-3 col-md-2 col-form-label">章數</label>
+							<div class="col-9 col-md-10">
 								<input type="number" id="cid" name="cid" class="form-control" value="{$obj.cid}">
 							</div>
 						</div>
 
 						<div class="form-group row">
-							<label for="sid" class="col-2 col-form-label">回數</label>
-							<div class="col-10">
+							<label for="sid" class="col-3 col-md-2 col-form-label">回數</label>
+							<div class="col-9 col-md-10">
 								<input type="number" id="sid" name="sid" class="form-control" value="{$obj.sid}">
 							</div>
 						</div>
 
 						<div class="form-group row">
-							<label for="status" class="col-2 col-form-label">狀態</label>
-							<div class="col-10">
+							<label for="status" class="col-3 col-md-2 col-form-label">狀態</label>
+							<div class="col-9 col-md-10">
 								<label for="zero" class="col-form-label-sm">
 									<input type="radio" id="zero" name="status" value="0" {eq name="obj.status" value="待審核"}checked{/eq}>待審核
 								</label>
@@ -51,8 +51,8 @@
 						</div>
 
 						<div class="form-group row">
-							<label for="title" class="col-2 col-form-label">標題</label>
-							<div class="col-10">
+							<label for="title" class="col-3 col-md-2 col-form-label">標題</label>
+							<div class="col-9 col-md-10">
 								<input type="text" id="title" name="title" class="form-control" value="{$obj.title}">
 							</div>
 						</div>

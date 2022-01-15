@@ -9,11 +9,11 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th class="text-center">序號</th>
+							<th class="text-center">#</th>
 							<th class="text-center">地名</th>
-							<th class="text-center">地址</th>
-							<th class="text-center">出處</th>
-							<th class="text-center">夜數</th>
+							<th class="text-center sm-hidden">地址</th>
+							<th class="text-center md-hidden">出處</th>
+							<th class="text-center lg-hidden">夜數</th>
 							<th class="text-center">操作</th>
 						</tr>
 					</thead>
@@ -23,9 +23,9 @@
 							<tr>
 								<td class="text-center">{$obj.mid}</td>
 								<td class="text-left">{$obj.name}</td>
-								<td class="text-left">{$obj.address|mb_substr=0,6}…</td>
-								<td class="text-left">{$obj.hanasi}</td>
-								<td class="text-center">{$obj.yoru}</td>
+								<td class="sm-hidden text-left">{$obj.address|mb_substr=0,6}…</td>
+								<td class="md-hidden text-left">{$obj.hanasi}</td>
+								<td class="lg-hidden text-center">{$obj.yoru}</td>
 								<td class="text-center">
 									<button class="btn btn-danger btn-delete btn-sm mt-1 mt-lg-0" data-id="{$obj.id}">刪除</button>
 									<a href="{:url('/markers/'.$obj.id.'/edit')}?page={empty name='page'}1{else/}{$page}{/empty}" class="btn btn-warning btn-sm mt-1 mt-lg-0">修改</a>
