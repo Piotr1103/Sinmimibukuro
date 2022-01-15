@@ -27,8 +27,8 @@ a.aside {
 	display: flex;
 	justify-content: center;
 }
+
 #map {
-	/*height: 100%;*/
 	height: 93vh;
 }
 /* Optional: Makes the sample page fill the window. */
@@ -38,6 +38,7 @@ html, body {
 	padding: 0;
 }
 
+/*製作固定式背景圖片*/
 body {
 	background-image: url(https://www.itsfun.com.tw/cacheimg/e9/96/03a040e95d5b942fe14fcbf04e26.jpg);
 	background-size: cover;			/*盡可能覆蓋背景*/
@@ -46,15 +47,18 @@ body {
 	background-attachment: fixed;	/*讓圖片看起來會隨著滑鼠滾動*/
 }
 
-form, table {
+/*避免表格和表單與背景圖片融合*/
+form:not(.card-footer form), table {
 	background-color: white;
 }
 
+/*讓表單邊緣圓滑一點*/
 form {
 	padding: 10px;
 	border-radius: 10px;
 }
 
+/*讓carousel-indicator呈現圓形點狀*/
 ol.carousel-indicators li, ol.carousel-indicators li.active {
 	/*float: left;*/
 	width: 15px;
@@ -63,8 +67,30 @@ ol.carousel-indicators li, ol.carousel-indicators li.active {
 	border: 0;
 }
 
+/*激活的carousel-indicator的顏色*/
 ol.carousel-indicators li.active {
 	background: cyan;
+}
+
+	/*
+	 *讓表格中一些重要性較低的欄位在小型裝置上不顯示
+	 *lg-hidden隱藏級別最高，必須到筆電大小才顯示
+	 *md-hidden隱藏級別次之，到大型移動裝置才顯示
+	 *sm-hidden依此類推……
+	 */
+@media (min-width: 320px) {
+}
+
+@media (max-width: 320px) {
+}
+
+@media (min-width: 375px) {
+}
+
+@media (max-width: 375px) {
+	.sm-hidden {
+		display: none;
+	}
 }
 
 @media (min-width: 425px) {
@@ -77,4 +103,30 @@ ol.carousel-indicators li.active {
 	.carousel-item img {
 		height: 400px;
 	}
+	.md-hidden {
+		display: none;
+	}
+}
+
+@media (min-width: 768px) {
+	/*使用大於平板的設備時，模態框可以完全展開*/
+	#login {
+		height: 100%;
+	}
+}
+
+@media (max-width: 768px) {
+	/*使用小於平板的設備時，模態框穎減掉高度給手機或平板鍵盤保留位置*/
+	#login {
+		height: 50%;
+	}
+	.lg-hidden {
+		display: none;
+	}
+}
+
+@media (min-width: 1024px) {
+}
+
+@media (max-width: 1024px) {
 }
