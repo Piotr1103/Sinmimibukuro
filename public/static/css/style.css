@@ -134,6 +134,14 @@ ol.carousel-indicators li.active {
 	.lg-hidden {
 		display: none;
 	}
+	.page-item {
+		width: 21px;
+		font-size: 7px;
+		margin-top: -10px;
+	}
+	.page-link {
+		padding: 0.3rem
+	}
 }
 
 @media (min-width: 1024px) {
