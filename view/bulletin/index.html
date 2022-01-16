@@ -22,8 +22,8 @@
 							<tr>
 								<td class="text-center">{$obj.bid}</td>
 								<td class="sm-hidden text-center">{$obj.create_time}</td>
-								<td class="text-center">{$obj.title|mb_substr=0,5}……</td>
-								<td class="lg-hidden text-left lghidden">{$obj.content|mb_substr=0,15}……</td>
+								<td class="text-center">{$obj.title|mb_strimwidth=0,10,'……'}</td>
+								<td class="lg-hidden text-left lghidden">{$obj.content|mb_strimwidth=0,10,'……'}</td>
 								<td class="text-center">
 									<!-- 由於在RoleModel中已將rid設為主鍵，故必須將rid傳給控制器的delete方法方能刪除 -->
 									<button class="btn btn-danger btn-delete btn-sm mx-3 mx-md-1 mt-1 mt-lg-0" data-id="{$obj.id}">刪除</button>
