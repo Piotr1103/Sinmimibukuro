@@ -70,7 +70,7 @@
 			{if (null == session('admin')) AND (session('admin') == '')}
 				<a href="#" class="nav-link text-dark mr-1" data-toggle="modal" data-target="#login">登錄</a>
 			{else/}
-				<div class="nav-item dropdown mr-5">
+				<div class="nav-item dropdown admin mr-5">
 					<a href="#" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown">{:session('admin')}</a>
 					<div class="dropdown-menu">
 						<a href="/auth.html" class="dropdown-item">權限管理</a>

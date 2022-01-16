@@ -87,6 +87,9 @@ ol.carousel-indicators li.active {
 }
 
 @media (max-width: 320px) {
+	.admin {
+		width: 80px;
+	}
 }
 
 @media (min-width: 375px) {
