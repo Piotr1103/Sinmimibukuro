@@ -3,6 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="怪談, 耳袋">
+	<meta name="descriptions" content="新耳袋整個系列有十夜，然而中文版只印了兩夜就沒了。本網站旨在將新耳袋中的其他八夜都蒐集並翻譯，讓新耳袋更豐富的故事體系完整地呈現在大眾的面前。">
 	<title>{block name="title"}{/block}</title>
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	{css href="__CSS__/bootstrap.min.css"}
@@ -66,7 +68,7 @@
 			</div>
 
 			{if (null == session('admin')) AND (session('admin') == '')}
-				<a href="#" class="nav-link text-dark mr-5" data-toggle="modal" data-target="#login">登錄</a>
+				<a href="#" class="nav-link text-dark mr-1" data-toggle="modal" data-target="#login">登錄</a>
 			{else/}
 				<div class="nav-item dropdown mr-5">
 					<a href="#" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown">{:session('admin')}</a>
@@ -214,8 +216,7 @@
 		</section>
 
 		<div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05);">
-			<p>© 耳袋推廣協會 - {:date('Y')}</p>
-			<p>本網站僅是網頁作品無營利，若有侵權請聯絡，必定妥善處理</p>
+			<p>© 耳袋推廣協會 - 本網站僅是愛好者個人作品，未直接營利，若有侵權請聯絡，必定妥善處理 - {:date('Y')}</p>
 		</div>
 	</footer>
 
