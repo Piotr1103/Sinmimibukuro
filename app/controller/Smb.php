@@ -87,14 +87,16 @@ class Smb
 			]);
 		}
 
-		$id = SmbModel::create($data)->getData('id');
+		//$id = SmbModel::create($data)->getData('id');
 
-		return $id ? view('public/toast', [
+		/*return $id ? view('public/toast', [
 			'infos' 	=> ['恭喜，插入成功！'],
 			'url_text' 	=> '返回閱覽',
 			//帶上page參數以便在插入完成時可以有依據回到原先的頁面
 			'url_path' 	=> url('/smb', ['yid'=>$request->param('yid'),'page'=>$request->param('page')]),
-		]) : '插入失敗！';
+		]) : '插入失敗！';*/
+		//添加完新文章後直接回到該頁最大頁面，而不再轉到提示頁面
+		return redirect((string)url('/smb', ['yid'=>$request->param('yid'),'page'=>$request->param('page')]));
 	}
 
 	/**
