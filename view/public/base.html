@@ -243,6 +243,9 @@
 				}
 			})
 		})
+		$('a').hover(() => {
+			$('a').tooltip()
+		})
 		$('#logout').click(() => {
 			$.get('/logout', function(){
 				location.reload()

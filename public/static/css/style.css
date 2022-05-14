@@ -77,12 +77,22 @@ ol.carousel-indicators li.active {
 	background: cyan;
 }
 
-	/*
-	 *讓表格中一些重要性較低的欄位在小型裝置上不顯示
-	 *lg-hidden隱藏級別最高，必須到筆電大小才顯示
-	 *md-hidden隱藏級別次之，到大型移動裝置才顯示
-	 *sm-hidden依此類推……
-	 */
+/*修改Bootstrap所提供tooltip的外框顏色*/
+.tooltip-inner {
+	background-color: #3f8a2f;
+}
+
+/*修改Bootstrap所提供tooltip的外框箭頭顏色*/
+.tooltip > .arrow::before {
+	border-bottom-color: #3f8a2f;
+}
+
+/*
+ *讓表格中一些重要性較低的欄位在小型裝置上不顯示
+ *lg-hidden隱藏級別最高，必須到筆電大小才顯示
+ *md-hidden隱藏級別次之，到大型移動裝置才顯示
+ *sm-hidden依此類推……
+ */
 @media (min-width: 320px) {
 }
 
