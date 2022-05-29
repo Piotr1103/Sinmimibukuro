@@ -9,6 +9,7 @@ use app\validate\Smb as SmbValidate;
 use think\exception\ValidateException;
 use app\middleware\Auth as AuthMiddleware;
 use think\facade\Db;
+use app\common\Tool;
 
 class Smb
 {
@@ -25,7 +26,7 @@ class Smb
 			'yid' => request()->param('yid'),
 			'cid' => request()->param('cid'),
 		])->order('tid')->paginate([
-			'list_rows' 	=> 5,
+			'list_rows' 	=> Tool::ListRows(),
 			'query' 		=> request()->param(),
 		]);
 
@@ -87,16 +88,10 @@ class Smb
 			]);
 		}
 
-		//$id = SmbModel::create($data)->getData('id');
+		$id = SmbModel::create($data)->getData('id');
 
-		/*return $id ? view('public/toast', [
-			'infos' 	=> ['恭喜，插入成功！'],
-			'url_text' 	=> '返回閱覽',
-			//帶上page參數以便在插入完成時可以有依據回到原先的頁面
-			'url_path' 	=> url('/smb', ['yid'=>$request->param('yid'),'page'=>$request->param('page')]),
-		]) : '插入失敗！';*/
-		//添加完新文章後直接回到該頁最大頁面，而不再轉到提示頁面
-		return redirect((string)url('/smb', ['yid'=>$request->param('yid'),'page'=>$request->param('page')]));
+		//添加完新文章後直接回到該夜最大頁面，而不再轉到提示頁面
+		return redirect((string)url('/smb', ['yid'=>$request->param('yid'),'page'=>Tool::SmbLastPage((int)$request->param('yid'))]));
 	}
 
 	/**
